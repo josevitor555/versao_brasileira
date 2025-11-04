@@ -1,9 +1,20 @@
 @import "tailwindcss";
 
+@theme {
+  --font-cinzel: 'Cinzel', serif;
+  
+  --color-primary: #8B7355;
+  --color-secondary: #D1BB9E;
+  --color-white: #FFFFFF;
+  --color-accent: #EAD8C0;
+  --color-background: #FFF2E1;
+  --color-light: #F8EDE3;
+}
+
 @layer base {
   body {
-    font-family: 'Cinzel', serif;
-    background-color: #FFF2E1;
-    color: #e2dbb2;
+    font-family: var(--font-cinzel);
+    background-color: var(--color-background);
+    color: var(--color-light);
   }
 }

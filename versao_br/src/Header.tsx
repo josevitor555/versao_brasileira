@@ -1,6 +1,14 @@
+// States hooks
 import { useState } from 'react';
+
+// Reract icons
 import { Menu, X, Phone, Clock } from 'lucide-react';
+
+// Framer motion animations
 import { motion } from 'framer-motion';
+
+// Images
+import logo_bull5 from '../images/bull_5.png';
 
 export default function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -30,7 +38,7 @@ export default function Header() {
 
     return (
         <motion.header 
-            className="bg-background/90 text-primary shadow-none fixed top-0 left-0 w-full z-[9999] border-b border-primary/20 backdrop-blur-sm"
+            className="bg-transparent text-primary shadow-none p-1.5 fixed top-0 left-0 w-full z-9999 border-b border-primary/40 backdrop-blur-sm"
             initial="hidden"
             animate="visible"
             variants={staggerChildren}
@@ -38,10 +46,10 @@ export default function Header() {
             <div className="container mx-auto px-4">
                 <div className="flex items-center justify-between py-4">
                     <motion.div className="flex items-center space-x-3" variants={fadeIn}>
-                        <div className="w-10 h-10 bg-primary rounded-full flex items-center justify-center shadow-sm">
-                            <span className="text-background font-bold text-sm"> VB </span>
+                        <div className="w-10 h-10 rounded-full flex items-center justify-center shadow-sm">
+                            <img src={logo_bull5} alt="Logo Versão Brasileira" className="w-full h-full object-contain" />
                         </div>
-                        <h1 className="text-2xl font-heading font-semibo text-primary"> Versão Brasileira </h1>
+                        <h1 className="text-2xl font-heading font-semibold text-secondary"> Versão Brasileira </h1>
                     </motion.div>
 
                     {/* Desktop Navigation */}
@@ -91,7 +99,7 @@ export default function Header() {
                     </motion.nav>
 
                     {/* Quick Contact Info */}
-                    <motion.div className="hidden lg:flex items-center space-x-4 text-lg text-primary" variants={staggerChildren}>
+                    <motion.div className="hidden lg:flex items-center font-semibold space-x-4 text-lg text-primary" variants={staggerChildren}>
                         <motion.div className="flex items-center space-x-1" variants={fadeIn}>
                             <Phone className="w-4 h-4 text-secondary" />
                             <span>(86) 99548-3983</span>
@@ -115,7 +123,7 @@ export default function Header() {
                 {/* Mobile Navigation */}
                 {isMenuOpen && (
                     <motion.nav 
-                        className="md:hidden py-4 border-t border-primary/20 backdrop-blur-lg bg-background/90"
+                        className="md:hidden py-4 border-t border-primary/20 backdrop-blur-lg bg-transparent"
                         initial={{ opacity: 0, y: -20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.3 }}
@@ -140,13 +148,13 @@ export default function Header() {
                                 Contato
                             </button>
 
-                            {/*  */}
+                            {/* Quick Contact Info */}
                             <div className="pt-3 border-t border-primary/20">
-                                <div className="flex items-center space-x-2 text-sm text-primary">
+                                <div className="flex items-center space-x-2 text-sm text-secondary">
                                     <Phone className="w-4 h-4 text-secondary" />
                                     <span>(86) 99548-3983</span>
                                 </div>
-                                <div className="flex items-center space-x-2 text-sm mt-2 text-primary">
+                                <div className="flex items-center space-x-2 text-sm mt-2 text-secondary">
                                     <Clock className="w-4 h-4 text-secondary" />
                                     <span>Segunda a Sábado: 17h às 2h</span>
                                 </div>

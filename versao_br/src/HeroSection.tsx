@@ -1,9 +1,15 @@
+
+// States hooks
 import { useState, useEffect } from 'react';
+
+// React icons
 import { ChevronLeft, ChevronRight, MessageCircle, Calendar } from 'lucide-react';
+
+// Framer motion
 import { motion } from 'framer-motion';
 
 // Images
-// import bull from './images/bull_3.png';
+import bull_logo from '../images/bull_4.png';
 
 const heroImages = [
   {
@@ -76,8 +82,8 @@ export default function HeroSection() {
         {heroImages.map((image, index) => (
           <div
             key={index}
-            className={`absolute inset-0 transition-all duration-[1200ms] ease-[cubic-bezier(0.4,0,0.2,1)]
-      ${index === currentSlide ? 'opacity-100 scale-100' : 'opacity-0 scale-[1.02]'}
+            className={`absolute inset-0 transition-opacity duration-700
+      ${index === currentSlide ? 'opacity-100' : 'opacity-0'}
     `}
           >
             <img
@@ -85,7 +91,7 @@ export default function HeroSection() {
               alt={image.title}
               className="w-full h-full object-cover"
             />
-            <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/80"></div>
+            <div className="absolute inset-0 bg-linear-to-b from-black/70 via-black/50 to-black/80"></div>
           </div>
         ))}
 
@@ -116,14 +122,14 @@ export default function HeroSection() {
           {/* Logo Image */}
           <motion.div className="flex justify-center mb-6" variants={item}>
             <img
-              src="./images/bull_3.png"
+              src={bull_logo}
               alt="Versão Brasileira"
               className="w-32 h-32 object-contain relative z-20"
             />
           </motion.div>
 
           <motion.h1
-            className="text-3xl md:text-7xl font-heading font-semibold mb-6 drop-shadow-2xl text-light"
+            className="text-3xl md:text-7xl font-heading font-semibold mb-6 drop-shadow-2xl text-secondary"
             variants={item}
           >
             Versão Brasileira
@@ -151,7 +157,7 @@ export default function HeroSection() {
           >
             <motion.button
               onClick={openWhatsApp}
-              className="bg-primary hover:bg-secondary text-background cursor-pointer px-8 py-4 font-bold flex items-center space-x-2 border border-primary"
+              className="bg-transparent text-background cursor-pointer px-8 py-4 font-bold flex items-center space-x-2 border border-secondary"
               variants={item}
             >
               <MessageCircle className="w-5 h-5" />
@@ -159,7 +165,7 @@ export default function HeroSection() {
             </motion.button>
             <motion.button
               onClick={() => document.getElementById('events')?.scrollIntoView({ behavior: 'smooth' })}
-              className="bg-[#e2dbb2] hover:bg-secondary text-[#8B7355] cursor-pointer px-8 py-4 font-bold flex items-center space-x-2 border border-primary"
+              className="bg-[#e2dbb2] hover:bg-secondary text-primary cursor-pointer px-8 py-4 font-bold flex items-center space-x-2 border border-primary"
               variants={item}
             >
               <Calendar className="w-5 h-5" />
