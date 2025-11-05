@@ -1,5 +1,3 @@
-
-// States hooks
 import { useState, useEffect } from 'react';
 
 // React icons
@@ -9,7 +7,7 @@ import { ChevronLeft, ChevronRight, MessageCircle, Calendar } from 'lucide-react
 import { motion } from 'framer-motion';
 
 // Images
-import bull_logo from '../images/bull_4.png';
+import bull_logo from '../images/bull_5.png';
 
 const heroImages = [
   {
@@ -40,7 +38,7 @@ export default function HeroSection() {
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % heroImages.length);
-    }, 8000);
+    }, 6000);
     return () => clearInterval(timer);
   }, []);
 
@@ -53,7 +51,7 @@ export default function HeroSection() {
   };
 
   const openWhatsApp = () => {
-    const phoneNumber = '5511999999999';
+    const phoneNumber = '558695483983';
     const message = 'Olá! Gostaria de fazer uma reserva na Versão Brasileira.';
     const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
     window.open(url, '_blank');
@@ -77,12 +75,13 @@ export default function HeroSection() {
 
   return (
     <section id="home" className="relative h-screen overflow-hidden">
+
       {/* Background Slider */}
       <div className="absolute inset-0">
         {heroImages.map((image, index) => (
           <div
             key={index}
-            className={`absolute inset-0 transition-opacity duration-700
+            className={`absolute inset-0 transition-opacity duration-1200 ease-out
       ${index === currentSlide ? 'opacity-100' : 'opacity-0'}
     `}
           >
@@ -124,16 +123,38 @@ export default function HeroSection() {
             <img
               src={bull_logo}
               alt="Versão Brasileira"
-              className="w-32 h-32 object-contain relative z-20"
+              className="w-40 h-40 object-contain relative z-20"
             />
           </motion.div>
 
           <motion.h1
-            className="text-3xl md:text-7xl font-heading font-semibold mb-6 drop-shadow-2xl text-secondary"
+            className="text-2xl md:text-6xl font-heading font-semibold mb-2 drop-shadow-2xl text-secondary"
             variants={item}
           >
             Versão Brasileira
           </motion.h1>
+
+          {/* SVG Decorativo */}
+          <div className="flex justify-center mb-6">
+            <svg
+              width="250"
+              height="12"
+              viewBox="0 0 250 12"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <line x1="0" y1="6" x2="250" y2="6" stroke="#D1BB9E" stroke-width="1" opacity="0.5" />
+
+              <polygon points="117,2 121,6 117,10 113,6" fill="#D1BB9E" />
+              <polygon points="123,2 127,6 123,10 119,6" fill="#D1BB9E" />
+              <polygon points="129,2 133,6 129,10 125,6" fill="#D1BB9E" />
+
+              <circle cx="4" cy="6" r="2" fill="#D1BB9E" />
+              <circle cx="246" cy="6" r="2" fill="#D1BB9E" />
+            </svg>
+
+          </div>
+
           <motion.p
             className="text-xl text-white md:text-2xl mb-4 font-light drop-shadow-lg"
             variants={item}

@@ -1,0 +1,138 @@
+// React
+import { useState } from 'react';
+
+// React icons
+import { Phone, MapPin } from 'lucide-react';
+
+// Images
+// import bull_logo from '../images/bull_4.png';
+
+export default function About() {
+    const [isHovered, setIsHovered] = useState(false);
+
+    return (
+        <section id="sobre" className="bg-black py-16">
+            <div className="max-w-7xl mx-auto">
+                <div className="flex flex-col lg:flex-row gap-14 p-8 items-start">
+                    <div className="w-full lg:w-1/2">
+                        <h1 className="text-4xl font-heading font-semibold mb-2 text-secondary">
+                            Sobre Nós
+                        </h1>
+                        {/* SVG Decorativo */}
+                        <div className="flex justify-start mb-4">
+                            <svg
+                                width="200"
+                                height="12"
+                                viewBox="0 0 250 12"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                            >
+                                <line x1="0" y1="6" x2="250" y2="6" stroke="#D1BB9E" stroke-width="1" opacity="0.5" />
+
+                                <polygon points="117,2 121,6 117,10 113,6" fill="#D1BB9E" />
+                                <polygon points="123,2 127,6 123,10 119,6" fill="#D1BB9E" />
+                                <polygon points="129,2 133,6 129,10 125,6" fill="#D1BB9E" />
+
+                                <circle cx="4" cy="6" r="2" fill="#D1BB9E" />
+                                <circle cx="246" cy="6" r="2" fill="#D1BB9E" />
+                            </svg>
+
+                        </div>
+
+                        <h2 className="text-2xl font-heading font-medium mb-4 text-secondary">
+                            Nossa História
+                        </h2>
+
+                        <p className="text-light text-lg mb-6 leading-relaxed" style={{ lineHeight: '1.6' }}>
+                            Desde 2020, a Versão Brasileira se estabeleceu como um espaço acolhedor e familiar,
+                            oferecendo uma experiência única que combina boa comida, entretenimento e ambiente
+                            descontraído para todas as idades.
+                        </p>
+
+                        <h3 className="text-xl font-heading font-medium mb-4 text-secondary">
+                            O que nos torna especiais
+                        </h3>
+
+                        <p className="text-light text-lg mb-6 leading-relaxed" style={{ lineHeight: '1.6' }}>
+                            Com um cardápio variado e shows ao vivo toda semana, criamos um ambiente onde
+                            famílias podem desfrutar de momentos especiais. Nosso espaço infantil garante
+                            diversão para as crianças enquanto os adultos relaxam e apreciam nossa culinária.
+                        </p>
+
+                        <p className="text-light text-lg mb-8 leading-relaxed" style={{ lineHeight: '1.6' }}>
+                            Localizados em São Gonçalo, somos mais do que um restaurante - somos um ponto de
+                            encontro para amigos e famílias que buscam qualidade, conforto e entretenimento.
+                        </p>
+
+                        {/* Botões */}
+                        <div className="flex flex-col sm:flex-row gap-4 mt-6">
+                            <button
+                                className="bg-transparent text-secondary cursor-pointer border border-secondary px-6 py-3 font-medium"
+                                onMouseEnter={() => setIsHovered(true)}
+                                onMouseLeave={() => setIsHovered(false)}
+                            >
+                                <div className="flex items-center justify-center space-x-2">
+                                    <Phone className="w-5 h-5" />
+                                    <span>(86) 99548-3983</span>
+                                </div>
+                            </button>
+
+                            <button
+                                className="bg-secondary text-primary cursor-pointer border border-secondary px-6 py-3 font-medium"
+                                onMouseEnter={() => setIsHovered(true)}
+                                onMouseLeave={() => setIsHovered(false)}
+                            >
+                                <div className="flex items-center justify-center space-x-2">
+                                    <MapPin className="w-5 h-5" />
+                                    <span>Localização</span>
+                                </div>
+                            </button>
+                        </div>
+                    </div>
+
+                    {/* <div className="w-full lg:w-1/2 flex items-center justify-center mt-8 lg:mt-0">
+                        <div className="w-full h-full flex items-center justify-center pt-22 pl-64">
+                            <div className="flex items-center justify-center gap-6">
+                                <div className="flex flex-col items-center justify-center">
+                                    <div className="w-60 aspect-14/16 rounded-lg overflow-hidden shadow-lg">
+                                        <img
+                                            src={bull_logo}
+                                            alt="Ambiente interno do Versão Brasileira"
+                                            className="w-full h-full object-cover"
+                                        />
+                                    </div>
+                                </div>
+                                <div className="flex flex-col items-center justify-center">
+                                    <div className="w-[280px] aspect-9/16 rounded-lg overflow-hidden shadow-lg">
+                                        <img
+                                            src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.1.0&auto=format&fit=crop&q=80&w=1170"
+                                            alt="Área externa do Versão Brasileira"
+                                            className="w-full h-full object-cover"
+                                        />
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div> */}
+
+                    <div className="w-full lg:w-1/2 flex items-center justify-center mt-8 lg:mt-0">
+                        <div className="flex items-center justify-center w-full h-full px-6 sm:px-10 md:px-16 lg:px-24 xl:px-32 py-16">
+                            <div className="flex items-center justify-center gap-10">
+                                <div className="w-[220px] sm:w-60 md:w-[260px] lg:w-[280px] aspect-9/16 overflow-hidden shadow-lg rounded-xl">
+                                    <img
+                                        src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.1.0&auto=format&fit=crop&q=80&w=1170"
+                                        alt="Ambiente Versão Brasileira"
+                                        className="w-full h-full object-cover"
+                                    />
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    );
+}
