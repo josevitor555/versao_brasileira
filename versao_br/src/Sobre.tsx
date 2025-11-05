@@ -8,7 +8,7 @@ import { Phone, MapPin } from 'lucide-react';
 // import bull_logo from '../images/bull_4.png';
 
 export default function About() {
-    const [isHovered, setIsHovered] = useState(false);
+    const [, setIsHovered] = useState(false);
 
     return (
         <section id="sobre" className="bg-black py-16">
