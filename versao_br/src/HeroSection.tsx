@@ -152,7 +152,6 @@ export default function HeroSection() {
               <circle cx="4" cy="6" r="2" fill="#D1BB9E" />
               <circle cx="246" cy="6" r="2" fill="#D1BB9E" />
             </svg>
-
           </div>
 
           <motion.p

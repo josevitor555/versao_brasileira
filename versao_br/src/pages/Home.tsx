@@ -1,6 +1,7 @@
 import Header from '../Header';
 import HeroSection from '../HeroSection';
-import About from '../About';
+import About from '../Sobre';
+import Cardapio from '../MenuCardapio';
 
 const Home = () => {
     return (
@@ -8,6 +9,7 @@ const Home = () => {
             <HeroSection />
             <Header />
             <About />
+            <Cardapio />
         </div>
     );
 }
