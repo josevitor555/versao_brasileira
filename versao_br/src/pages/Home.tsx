@@ -2,6 +2,7 @@ import Header from '../Header';
 import HeroSection from '../HeroSection';
 import About from '../Sobre';
 import Cardapio from '../MenuCardapio';
+import EventsSection from '../ShowsEventos';
 
 const Home = () => {
     return (
@@ -10,6 +11,7 @@ const Home = () => {
             <Header />
             <About />
             <Cardapio />
+            <EventsSection />
         </div>
     );
 }

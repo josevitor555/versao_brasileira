@@ -8,35 +8,35 @@ import { MessageCircle } from 'lucide-react';
 import bull_logo from '../images/bull_5.png';
 
 // Componente ImageWithFallback
-const ImageWithFallback = ({ 
-  src, 
-  alt, 
-  className = ''
-}: { 
-  src: string; 
-  alt: string; 
-  className?: string;
+const ImageWithFallback = ({
+    src,
+    alt,
+    className = ''
+}: {
+    src: string;
+    alt: string;
+    className?: string;
 }) => {
-  const [imageError, setImageError] = useState(false);
-  const [imageLoaded, setImageLoaded] = useState(false);
+    const [imageError, setImageError] = useState(false);
+    const [imageLoaded, setImageLoaded] = useState(false);
 
-  return imageError ? (
-    <div className={`flex items-center justify-center bg-neutral-700 ${className}`}>
-      <div className="text-center flex flex-col items-center justify-center w-full h-full">
-        <img width="100" height="100" src={bull_logo} alt="Imagem não disponível" className="mx-auto" />
-        <p className="text-base text-neutral-400 mt-2"> Imagem indisponível </p>
-      </div>
-    </div>
-  ) : (
-    <img
-      src={src}
-      alt={alt}
-      className={className}
-      onError={() => setImageError(true)}
-      onLoad={() => setImageLoaded(true)}
-      style={{ display: imageLoaded ? 'block' : 'none' }}
-    />
-  );
+    return imageError ? (
+        <div className={`flex items-center justify-center bg-neutral-700 ${className}`}>
+            <div className="text-center flex flex-col items-center justify-center w-full h-full p-2">
+                <img width="80" height="80" src={bull_logo} alt="Imagem não disponível" className="mx-auto" />
+                <p className="text-sm md:text-base text-neutral-400 mt-2"> Imagem indisponível </p>
+            </div>
+        </div>
+    ) : (
+        <img
+            src={src}
+            alt={alt}
+            className={className}
+            onError={() => setImageError(true)}
+            onLoad={() => setImageLoaded(true)}
+            style={{ display: imageLoaded ? 'block' : 'none' }}
+        />
+    );
 };
 
 interface MenuItem {
@@ -90,14 +90,37 @@ export default function MenuSection() {
                     { id: 5, name: 'Sobremesas', display_order: 5 }
                 ];
 
-                // Mock items for development
+                // Mock items for development - 4 items per category = 16 total items
                 const mockItems = [
+                    // Bebidas (category_id: 1)
                     { id: 1, category_id: 1, name: 'Caipirinha da Casa', description: 'Tradicional com cachaça artesanal e frutas frescas', price: 18.00, is_available: true, image_url: null },
                     { id: 2, category_id: 1, name: 'Cerveja Artesanal', description: 'Seleção de cervejas locais', price: 12.00, is_available: true, image_url: null },
+                    { id: 7, category_id: 1, name: 'Suco Natural', description: 'Sabores variados de frutas frescas', price: 10.00, is_available: true, image_url: null },
+                    { id: 8, category_id: 1, name: 'Refrigerante', description: 'Coca-Cola, Guaraná, Fanta', price: 6.00, is_available: true, image_url: null },
+
+                    // Saladas (category_id: 2)
                     { id: 3, category_id: 2, name: 'Salada Caesar', description: 'Alface romana, croutons, parmesão e molho caesar', price: 28.00, is_available: true, image_url: null },
+                    { id: 15, category_id: 2, name: 'Salada Tropical', description: 'Mix de folhas, manga, abacaxi e molho especial', price: 25.00, is_available: true, image_url: null },
+                    { id: 16, category_id: 2, name: 'Salada Mediterrânea', description: 'Rúcula, tomate seco, azeitonas e queijo feta', price: 30.00, is_available: true, image_url: null },
+                    { id: 17, category_id: 2, name: 'Salada Fitness', description: 'Alface, pepino, cenoura ralada e molho low carb', price: 22.00, is_available: true, image_url: null },
+
+                    // Pratos Principais (category_id: 3)
                     { id: 4, category_id: 3, name: 'Picanha na Chapa', description: 'Picanha grelhada com acompanhamentos', price: 65.00, is_available: true, image_url: null },
+                    { id: 20, category_id: 3, name: 'Filé Mignon', description: 'Filé mignon grelhado com purê de batata', price: 75.00, is_available: true, image_url: null },
+                    { id: 21, category_id: 3, name: 'Frango à Parmegiana', description: 'Filé de frango empanado com molho e queijo', price: 42.00, is_available: true, image_url: null },
+                    { id: 22, category_id: 3, name: 'Peixe ao Molho', description: 'Filé de peixe grelhado com molho especial', price: 55.00, is_available: true, image_url: null },
+
+                    // Lanches (category_id: 4)
                     { id: 5, category_id: 4, name: 'Sanduíche da Casa', description: 'Pão artesanal, carne desfiada e queijo coalho', price: 32.00, is_available: true, image_url: null },
-                    { id: 6, category_id: 5, name: 'Pudim de Leite', description: 'Receita tradicional da casa', price: 15.00, is_available: true, image_url: null }
+                    { id: 27, category_id: 4, name: 'Hambúrguer Artesanal', description: 'Hambúrguer bovino com queijo e acompanhamentos', price: 28.00, is_available: true, image_url: null },
+                    { id: 28, category_id: 4, name: 'X-Burger Especial', description: 'Pão, hambúrguer, queijo, bacon e ovo', price: 35.00, is_available: true, image_url: null },
+                    { id: 29, category_id: 4, name: 'Misto Quente', description: 'Pão, presunto, queijo e maionese', price: 15.00, is_available: true, image_url: null },
+
+                    // Sobremesas (category_id: 5)
+                    { id: 6, category_id: 5, name: 'Pudim de Leite', description: 'Receita tradicional da casa', price: 15.00, is_available: true, image_url: null },
+                    { id: 36, category_id: 5, name: 'Torta de Limão', description: 'Torta gelada de limão siciliano', price: 18.00, is_available: true, image_url: null },
+                    { id: 37, category_id: 5, name: 'Brownie', description: 'Brownie quente com sorvete', price: 20.00, is_available: true, image_url: null },
+                    { id: 38, category_id: 5, name: 'Mousse de Maracujá', description: 'Mousse leve e refrescante', price: 16.00, is_available: true, image_url: null },
                 ];
 
                 setCategories(mockCategories);
@@ -134,7 +157,7 @@ Por favor, confirmem a disponibilidade.`;
     }
 
     return (
-        <section id="cardapio" className="py-20 bg-black">
+        <section id="cardapio" className="py-16 md:py-20 bg-black">
             <div className="container mx-auto px-4">
                 <div className="text-center mb-12">
                     <h2 className="text-4xl md:text-5xl font-heading font-bold text-secondary mb-2">
@@ -142,33 +165,34 @@ Por favor, confirmem a disponibilidade.`;
                     </h2>
                     <div className="flex justify-center mb-6">
                         <svg
-                            width="250"
+                            width="100%"
                             height="12"
-                            viewBox="0 0 250 12"
+                            viewBox="0 0 200 12"
                             fill="none"
                             xmlns="http://www.w3.org/2000/svg"
+                            className="max-w-[200px] mx-auto"
                         >
-                            <line x1="0" y1="6" x2="250" y2="6" stroke="#D1BB9E" stroke-width="1" opacity="0.5" />
+                            <line x1="0" y1="6" x2="200" y2="6" stroke="#D1BB9E" stroke-width="1" opacity="0.5" />
 
-                            <polygon points="117,2 121,6 117,10 113,6" fill="#D1BB9E" />
-                            <polygon points="123,2 127,6 123,10 119,6" fill="#D1BB9E" />
-                            <polygon points="129,2 133,6 129,10 125,6" fill="#D1BB9E" />
+                            <polygon points="92,2 96,6 92,10 88,6" fill="#D1BB9E" />
+                            <polygon points="100,2 104,6 100,10 96,6" fill="#D1BB9E" />
+                            <polygon points="108,2 112,6 108,10 104,6" fill="#D1BB9E" />
 
                             <circle cx="4" cy="6" r="2" fill="#D1BB9E" />
-                            <circle cx="246" cy="6" r="2" fill="#D1BB9E" />
+                            <circle cx="196" cy="6" r="2" fill="#D1BB9E" />
                         </svg>
                     </div>
 
-                    <p className="text-lg text-neutral-text-secondary max-w-2xl mx-auto mb-8">
+                    <p className="text-lg md:text-xl text-neutral-text-secondary max-w-2xl mx-auto mb-8 px-4">
                         Confira nossas especialidades e faça seu pedido
                     </p>
 
                     {/* Category Filter Buttons */}
                     {categories.length > 0 && (
-                        <div className="flex flex-wrap justify-center gap-3 mb-4">
+                        <div className="flex flex-wrap justify-center gap-2 mb-4">
                             <button
                                 onClick={() => setSelectedCategory(null)}
-                                className={`px-4 py-2 cursor-pointer font-medium transition-colors ${selectedCategory === null
+                                className={`px-4 py-2.5 text-base cursor-pointer font-medium transition-colors ${selectedCategory === null
                                     ? 'bg-secondary text-black'
                                     : 'bg-neutral-section text-neutral-text-secondary hover:bg-neutral-border'
                                     }`}
@@ -179,7 +203,7 @@ Por favor, confirmem a disponibilidade.`;
                                 <button
                                     key={category.id}
                                     onClick={() => setSelectedCategory(category.id)}
-                                    className={`px-4 py-2 cursor-pointer font-medium transition-colors ${selectedCategory === category.id
+                                    className={`px-4 py-2.5 text-base cursor-pointer font-medium transition-colors ${selectedCategory === category.id
                                         ? 'bg-secondary text-black'
                                         : 'bg-neutral-section text-neutral-text-secondary hover:bg-neutral-border'
                                         }`}
@@ -192,7 +216,7 @@ Por favor, confirmem a disponibilidade.`;
                 </div>
 
                 {/* WhatsApp Quick Order Buttons */}
-                <div className="flex flex-wrap justify-center gap-4 mb-14">
+                <div className="flex flex-wrap justify-center gap-3 mb-12 md:mb-14">
                     <button
                         onClick={() => {
                             const phoneNumber = '5586995483983';
@@ -200,10 +224,10 @@ Por favor, confirmem a disponibilidade.`;
                             const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
                             window.open(url, '_blank');
                         }}
-                        className="inline-flex items-center space-x-2 bg-secondary text-black px-4 py-2 cursor-pointer font-medium transition-colors"
+                        className="inline-flex items-center space-x-2 bg-secondary text-black px-5 py-2.5 cursor-pointer rounded-full font-medium transition-colors text-base"
                     >
                         <MessageCircle className="w-4 h-4" />
-                        <span> Cardápio Completo </span>
+                        <span className="text-sm md:text-base"> Cardápio Completo </span>
                     </button>
                     <button
                         onClick={() => {
@@ -212,10 +236,10 @@ Por favor, confirmem a disponibilidade.`;
                             const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
                             window.open(url, '_blank');
                         }}
-                        className="inline-flex items-center space-x-2 bg-secondary text-black px-4 py-2 cursor-pointer font-medium transition-colors"
+                        className="inline-flex items-center space-x-2 bg-secondary text-black px-5 py-2.5 cursor-pointer rounded-full font-medium transition-colors text-base"
                     >
                         <MessageCircle className="w-4 h-4" />
-                        <span> Fazer Reserva </span>
+                        <span className="text-sm md:text-base"> Fazer Reserva </span>
                     </button>
                     <button
                         onClick={() => {
@@ -224,14 +248,14 @@ Por favor, confirmem a disponibilidade.`;
                             const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
                             window.open(url, '_blank');
                         }}
-                        className="inline-flex items-center space-x-2 bg-secondary text-black px-4 py-2 cursor-pointer font-medium transition-colors"
+                        className="inline-flex items-center space-x-2 bg-secondary text-black px-5 py-2.5 cursor-pointer rounded-full font-medium transition-colors text-base"
                     >
                         <MessageCircle className="w-4 h-4" />
-                        <span> Pratos do Dia </span>
+                        <span className="text-sm md:text-base"> Pratos do Dia </span>
                     </button>
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto justify-items-start">
+                <div className="grid grid-cols-1 xs:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 md:gap-6 max-w-7xl mx-auto justify-items-start">
                     {menuItems
                         .filter(
                             (item) =>
@@ -242,19 +266,15 @@ Por favor, confirmem a disponibilidade.`;
                             // Calcular o índice correto dentro da categoria específica
                             const sameCategoryItems = filteredItems.filter(i => i.category_id === item.category_id);
                             const categoryIndex = sameCategoryItems.findIndex(i => i.id === item.id);
-                            
+
                             const categoryImages: Record<number, string[]> = {
                                 1: [ // Bebidas
                                     'https://images.unsplash.com/photo-1606755962773-0c9b4a4d1b9d?auto=format&fit=crop&q=80&w=600&h=800',
                                     'https://images.unsplash.com/photo-1592277705477-692b095b98ea?auto=format&fit=crop&q=80&w=600&h=800',
                                     'https://images.unsplash.com/photo-1581254227460-3ff6b38c5a5a?auto=format&fit=crop&q=80&w=600&h=800',
                                     'https://images.unsplash.com/photo-1592277705477-692b095b98ea?auto=format&fit=crop&q=80&w=600&h=800',
-                                    'https://images.unsplash.com/photo-1581254227460-3ff6b38c5a5a?auto=format&fit=crop&q=80&w=600&h=800',
-                                    'https://images.unsplash.com/photo-1592277705477-692b095b98ea?auto=format&fit=crop&q=80&w=600&h=800',
                                 ],
                                 2: [ // Saladas
-                                    'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&q=80&w=600&h=800',
-                                    'https://images.unsplash.com/photo-1551218808-94e220e084d2?auto=format&fit=crop&q=80&w=600&h=800',
                                     'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&q=80&w=600&h=800',
                                     'https://images.unsplash.com/photo-1551218808-94e220e084d2?auto=format&fit=crop&q=80&w=600&h=800',
                                     'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&q=80&w=600&h=800',
@@ -265,28 +285,14 @@ Por favor, confirmem a disponibilidade.`;
                                     'https://images.unsplash.com/photo-1551183053-bf91a1d81141?auto=format&fit=crop&q=80&w=600&h=800',
                                     'https://images.unsplash.com/photo-1601050690597-6c43d9b8c38c?auto=format&fit=crop&q=80&w=600&h=800',
                                     'https://images.unsplash.com/photo-1551183053-bf91a1d81141?auto=format&fit=crop&q=80&w=600&h=800',
-                                    'https://images.unsplash.com/photo-1601050690597-6c43d9b8c38c?auto=format&fit=crop&q=80&w=600&h=800',
-                                    'https://images.unsplash.com/photo-1551183053-bf91a1d81141?auto=format&fit=crop&q=80&w=600&h=800',
-                                    'https://images.unsplash.com/photo-1601050690597-6c43d9b8c38c?auto=format&fit=crop&q=80&w=600&h=800',
-                                    'https://images.unsplash.com/photo-1551183053-bf91a1d81141?auto=format&fit=crop&q=80&w=600&h=800',
                                 ],
                                 4: [ // Lanches
                                     'https://images.unsplash.com/photo-1605475128023-439a15189b5b?auto=format&fit=crop&q=80&w=600&h=800',
                                     'https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&q=80&w=600&h=800',
                                     'https://images.unsplash.com/photo-1605475128023-439a15189b5b?auto=format&fit=crop&q=80&w=600&h=800',
                                     'https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&q=80&w=600&h=800',
-                                    'https://images.unsplash.com/photo-1605475128023-439a15189b5b?auto=format&fit=crop&q=80&w=600&h=800',
-                                    'https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&q=80&w=600&h=800',
-                                    'https://images.unsplash.com/photo-1605475128023-439a15189b5b?auto=format&fit=crop&q=80&w=600&h=800',
-                                    'https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&q=80&w=600&h=800',
-                                    'https://images.unsplash.com/photo-1605475128023-439a15189b5b?auto=format&fit=crop&q=80&w=600&h=800',
-                                    'https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&q=80&w=600&h=800',
                                 ],
                                 5: [ // Sobremesas
-                                    'https://images.unsplash.com/photo-1551183053-bf91a1d81141?auto=format&fit=crop&q=80&w=600&h=800',
-                                    'https://images.unsplash.com/photo-1606755962773-0c9b4a4d1b9d?auto=format&fit=crop&q=80&w=600&h=800',
-                                    'https://images.unsplash.com/photo-1551183053-bf91a1d81141?auto=format&fit=crop&q=80&w=600&h=800',
-                                    'https://images.unsplash.com/photo-1606755962773-0c9b4a4d1b9d?auto=format&fit=crop&q=80&w=600&h=800',
                                     'https://images.unsplash.com/photo-1551183053-bf91a1d81141?auto=format&fit=crop&q=80&w=600&h=800',
                                     'https://images.unsplash.com/photo-1606755962773-0c9b4a4d1b9d?auto=format&fit=crop&q=80&w=600&h=800',
                                     'https://images.unsplash.com/photo-1551183053-bf91a1d81141?auto=format&fit=crop&q=80&w=600&h=800',
@@ -300,17 +306,17 @@ Por favor, confirmem a disponibilidade.`;
                             return (
                                 <div
                                     key={item.id}
-                                    className="flex flex-col items-start justify-start bg-transparent overflow-hidden transition-all duration-300 w-full max-w-sm hover:opacity-90"
+                                    className="flex flex-col items-start justify-start bg-transparent overflow-hidden transition-all duration-300 w-full hover:opacity-90"
                                 >
                                     {/* Imagem vertical */}
-                                    <div className="relative w-full aspect-6/8 bg-neutral-800 overflow-hidden">
+                                    <div className="relative w-full aspect-3/4 bg-neutral-800 overflow-hidden">
                                         <ImageWithFallback
                                             src={imgUrl}
                                             alt={item.name}
                                             className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
                                         />
 
-                                        <div className="absolute top-2 right-2 bg-white/80 text-neutral-700 font-semibold px-2 py-0.5 rounded-full text-xs shadow-sm">
+                                        <div className="absolute top-2 right-2 bg-secondary text-neutral-700 font-semibold px-2.5 py-1 rounded-full text-sm shadow-sm">
                                             R$ {item.price.toFixed(2)}
                                         </div>
                                     </div>
@@ -319,7 +325,7 @@ Por favor, confirmem a disponibilidade.`;
                                     <div className="flex flex-col items-start text-left p-3 w-full">
                                         <h3 className="text-lg font-medium text-secondary mt-2">{item.name}</h3>
                                         {item.description && (
-                                            <p className="text-lg text-white/80 mt-2 line-clamp-2">
+                                            <p className="text-sm md:text-base text-white/80 mt-2 line-clamp-2">
                                                 {item.description}
                                             </p>
                                         )}
