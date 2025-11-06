@@ -4,6 +4,9 @@ import { useState, useEffect } from 'react';
 // Icons
 import { Calendar, Clock, MessageCircle, MapPin } from 'lucide-react';
 
+// Framer Motion
+import { motion } from 'framer-motion';
+
 // Fallback components
 import ImageWithFallback from './ImageWithFallback';
 
@@ -22,6 +25,27 @@ interface Event {
 export default function EventsSection() {
     const [events, setEvents] = useState<Event[]>([]);
     const [loading, setLoading] = useState(true);
+
+    // Variações de animação para fade-in
+    const container = {
+        hidden: { opacity: 0 },
+        show: {
+            opacity: 1,
+            transition: {
+                staggerChildren: 0.2
+            }
+        }
+    };
+
+    const item = {
+        hidden: { opacity: 0, y: 20 },
+        show: { opacity: 1, y: 0, transition: { duration: 0.6 } }
+    };
+
+    const cardItem = {
+        hidden: { opacity: 0, y: 30 },
+        show: { opacity: 1, y: 0, transition: { duration: 0.5 } }
+    };
 
     useEffect(() => {
         const fetchEvents = async () => {
@@ -113,12 +137,21 @@ export default function EventsSection() {
     return (
         <section id="events" className="py-20 bg-black">
             <div className="container mx-auto px-4">
-                <div className="text-center mb-12">
-                    <h2 className="text-4xl md:text-5xl font-heading font-semibold text-secondary mb-3">
+                <motion.div 
+                    className="text-center mb-12"
+                    initial="hidden"
+                    whileInView="show"
+                    viewport={{ once: true, amount: 0.2 }}
+                    variants={container}
+                >
+                    <motion.h2 
+                        className="text-4xl md:text-5xl font-heading font-semibold text-secondary mb-3"
+                        variants={item}
+                    >
                         Shows e Eventos
-                    </h2>
+                    </motion.h2>
 
-                    <div className="flex justify-center mb-6">
+                    <motion.div className="flex justify-center mb-6" variants={item}>
                         <svg
                             width="250"
                             height="12"
@@ -135,17 +168,28 @@ export default function EventsSection() {
                             <circle cx="4" cy="6" r="2" fill="#D1BB9E" />
                             <circle cx="246" cy="6" r="2" fill="#D1BB9E" />
                         </svg>
-                    </div>
+                    </motion.div>
 
-                    <p className="text-lg text-neutral-text-secondary max-w-2xl mx-auto">
+                    <motion.p 
+                        className="text-lg text-neutral-text-secondary max-w-2xl mx-auto"
+                        variants={item}
+                    >
                         Confira nossa agenda de apresentações e eventos especiais
-                    </p>
-                </div>
+                    </motion.p>
+                </motion.div>
 
                 <div className="grid gap-8 max-w-4xl mx-auto">
                     {events.length > 0 ? (
                         events.map((event) => (
-                            <div key={event.id} className="bg-neutral-bg rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow">
+                            <motion.div 
+                                key={event.id} 
+                                className="bg-neutral-bg shadow-sm overflow-hidden hover:shadow-md transition-shadow"
+                                variants={cardItem}
+                                initial="hidden"
+                                whileInView="show"
+                                viewport={{ once: true, amount: 0.1 }}
+                                whileHover={{ y: -5 }}
+                            >
                                 <div className="md:flex">
                                     {event.image_url && (
                                         <div className="md:w-1/3">
@@ -160,11 +204,17 @@ export default function EventsSection() {
                                         </div>
                                     )}
                                     <div className={`p-6 ${event.image_url ? 'md:w-2/3' : 'w-full'}`}>
-                                        <h3 className="text-2xl font-heading font-semibold text-secondary mb-3">
+                                        <motion.h3 
+                                            className="text-2xl font-heading font-semibold text-secondary mb-3"
+                                            variants={item}
+                                        >
                                             {event.title}
-                                        </h3>
+                                        </motion.h3>
 
-                                        <div className="flex flex-wrap gap-4 mb-4 text-neutral-text-secondary">
+                                        <motion.div 
+                                            className="flex flex-wrap gap-4 mb-4 text-neutral-text-secondary"
+                                            variants={item}
+                                        >
                                             <div className="flex items-center space-x-2">
                                                 <Calendar className="w-4 h-4 text-neutral-button" />
                                                 <span className="font-medium">{formatDate(event.event_date)}</span>
@@ -181,33 +231,44 @@ export default function EventsSection() {
                                                     <span className="font-medium">R$ {event.price.toFixed(2)}</span>
                                                 </div>
                                             )}
-                                        </div>
+                                        </motion.div>
 
                                         {event.description && (
-                                            <p className="text-neutral-text-secondary mb-6 leading-relaxed">
+                                            <motion.p 
+                                                className="text-neutral-text-secondary mb-6 leading-relaxed"
+                                                variants={item}
+                                            >
                                                 {event.description}
-                                            </p>
+                                            </motion.p>
                                         )}
 
-                                        <button
+                                        <motion.button
                                             onClick={() => reserveWhatsApp(event)}
                                             className="inline-flex items-center space-x-2 bg-secondary hover:bg-neutral-button-primary-hover text-black px-6 py-2 cursor-pointer rounded-full font-semibold transition-colors"
+                                            whileHover={{ scale: 1.05 }}
+                                            whileTap={{ scale: 0.95 }}
+                                            variants={item}
                                         >
                                             <MessageCircle className="w-5 h-5" />
                                             <span> Reserve pelo WhatsApp </span>
-                                        </button>
+                                        </motion.button>
                                     </div>
                                 </div>
-                            </div>
+                            </motion.div>
                         ))
                     ) : (
-                        <div className="text-center text-neutral-text-secondary py-12 bg-neutral-bg rounded-lg border border-neutral-border">
+                        <motion.div 
+                            className="text-center text-neutral-text-secondary py-12 bg-neutral-bg rounded-lg border border-neutral-border"
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.6 }}
+                        >
                             <Calendar className="w-12 h-12 text-neutral-button mx-auto mb-4" />
                             <h3 className="text-xl font-heading font-semibold text-neutral-text mb-2">
                                 Novos eventos em breve
                             </h3>
                             <p> Estamos preparando uma programação especial. Fique ligado! </p>
-                        </div>
+                        </motion.div>
                     )}
                 </div>
             </div>

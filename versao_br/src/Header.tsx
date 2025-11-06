@@ -8,7 +8,7 @@ import { Menu, X, Phone, Clock } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 // Images
-import logo_bull5 from '../images/bull_5.png';
+import logo_bull5 from '/bull_5.png';
 
 export default function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);

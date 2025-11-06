@@ -7,7 +7,7 @@ import { ChevronLeft, ChevronRight, MessageCircle, Calendar } from 'lucide-react
 import { motion } from 'framer-motion';
 
 // Images
-import bull_logo from '../images/bull_5.png';
+import bull_logo from '/bull_5.png';
 
 const heroImages = [
   {
