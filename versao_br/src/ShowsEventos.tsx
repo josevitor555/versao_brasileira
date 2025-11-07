@@ -48,58 +48,55 @@ export default function EventsSection() {
     };
 
     useEffect(() => {
-        const fetchEvents = async () => {
-            try {
-                const response = await fetch('/api/events');
-                if (response.ok) {
-                    const data = await response.json();
-                    setEvents(data.filter((event: Event) => event.is_active));
-                }
-            } catch (error) {
-                console.error('Erro ao carregar eventos:', error);
-                // Mock data for development
-                const mockEvents = [
-                    {
-                        id: 1,
-                        title: 'Show de MPB - João Silva',
-                        description: 'Uma noite especial com os grandes clássicos da MPB brasileira',
-                        event_date: '2024-12-15',
-                        event_time: '20:00',
-                        price: 25.00,
-                        image_url: 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&q=80&w=600&h=400',
-                        whatsapp_message: 'Gostaria de reservar para o Show de MPB do João Silva no dia 15/12',
-                        is_active: true
-                    },
-                    {
-                        id: 2,
-                        title: 'Noite de Samba',
-                        description: 'Roda de samba com os melhores sambistas da região',
-                        event_date: '2024-12-22',
-                        event_time: '19:30',
-                        price: null,
-                        image_url: 'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&q=80&w=600&h=400',
-                        whatsapp_message: 'Gostaria de fazer uma reserva para a Noite de Samba no dia 22/12',
-                        is_active: true
-                    },
-                    {
-                        id: 3,
-                        title: 'Festa de Fim de Ano',
-                        description: 'Celebre a virada do ano conosco! Música, comida e muita alegria',
-                        event_date: '2024-12-31',
-                        event_time: '21:00',
-                        price: 80.00,
-                        image_url: 'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&q=80&w=600&h=400',
-                        whatsapp_message: 'Gostaria de reservar para a Festa de Fim de Ano',
-                        is_active: true
-                    }
-                ];
-                setEvents(mockEvents);
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        fetchEvents();
+        // Mock data for development
+        const mockEvents = [
+            {
+                id: 1,
+                title: 'Show de MPB - João Silva',
+                description: 'Uma noite especial com os grandes clássicos da MPB brasileira',
+                event_date: '2024-12-15',
+                event_time: '20:00',
+                price: 25.00,
+                image_url: 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&q=80&w=600&h=400',
+                whatsapp_message: 'Gostaria de reservar para o Show de MPB do João Silva no dia 15/12',
+                is_active: true
+            },
+            {
+                id: 2,
+                title: 'Noite de Samba',
+                description: 'Roda de samba com os melhores sambistas da região',
+                event_date: '2024-12-22',
+                event_time: '19:30',
+                price: null,
+                image_url: 'https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&q=80&w=600&h=400',
+                whatsapp_message: 'Gostaria de fazer uma reserva para a Noite de Samba no dia 22/12',
+                is_active: true
+            },
+            {
+                id: 3,
+                title: 'Festa de Fim de Ano',
+                description: 'Celebre a virada do ano conosco! Música, comida e muita alegria',
+                event_date: '2024-12-31',
+                event_time: '21:00',
+                price: 80.00,
+                image_url: 'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&q=80&w=600&h=400',
+                whatsapp_message: 'Gostaria de reservar para a Festa de Fim de Ano',
+                is_active: true
+            },
+            {
+                id: 4,
+                title: 'Concerto de Rock',
+                description: 'Uma noite inesquecível de rock nacional',
+                event_date: '2024-12-18',
+                event_time: '22:00',
+                price: 40.00,
+                image_url: 'https://images.unsplash.com/photo-1504711454769-9f10e0a8ef86?auto=format&fit=crop&q=80&w=600&h=400',
+                whatsapp_message: 'Gostaria de reservar para o Concerto de Rock no dia 18/12',
+                is_active: true
+            },
+        ];
+        setEvents(mockEvents);
+        setLoading(false);
     }, []);
 
     const formatDate = (dateString: string) => {
@@ -135,7 +132,7 @@ export default function EventsSection() {
     }
 
     return (
-        <section id="events" className="py-20 bg-black">
+        <section id="events" className="py-20 bg-black relative z-10">
             <div className="container mx-auto px-4">
                 <motion.div 
                     className="text-center mb-12"

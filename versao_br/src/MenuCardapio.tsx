@@ -80,84 +80,58 @@ export default function MenuSection() {
         show: { opacity: 1, y: 0, transition: { duration: 0.5 } }
     };
 
-    const cardItem = {
-        hidden: { opacity: 0, y: 30 },
-        show: { opacity: 1, y: 0, transition: { duration: 0.5 } }
-    };
+    // const cardItem = {
+    //     hidden: { opacity: 0, y: 30 },
+    //     show: { opacity: 1, y: 0, transition: { duration: 0.5 } }
+    // };
 
     useEffect(() => {
-        const fetchMenuData = async () => {
-            try {
-                const [itemsResponse, categoriesResponse] = await Promise.all([
-                    fetch('/api/menu/items'),
-                    fetch('/api/menu/categories')
-                ]);
+        // Mock data for development        
+        const mockCategories = [
+            { id: 1, name: 'Bebidas', display_order: 1 },
+            { id: 2, name: 'Saladas', display_order: 2 },
+            { id: 3, name: 'Pratos Principais', display_order: 3 },
+            { id: 4, name: 'Lanches', display_order: 4 },
+            { id: 5, name: 'Sobremesas', display_order: 5 }
+        ];
 
-                if (itemsResponse.ok) {
-                    const itemsData = await itemsResponse.json();
-                    setMenuItems(itemsData);
-                }
+        // Mock items for development - 4 items per category = 16 total items
+        const mockItems = [
+            // Bebidas (category_id: 1)
+            { id: 1, category_id: 1, name: 'Caipirinha da Casa', description: 'Tradicional com cachaça artesanal e frutas frescas', price: 18.00, is_available: true, image_url: null },
+            { id: 2, category_id: 1, name: 'Cerveja Artesanal', description: 'Seleção de cervejas locais', price: 12.00, is_available: true, image_url: null },
+            { id: 7, category_id: 1, name: 'Suco Natural', description: 'Sabores variados de frutas frescas', price: 10.00, is_available: true, image_url: null },
+            { id: 8, category_id: 1, name: 'Refrigerante', description: 'Coca-Cola, Guaraná, Fanta', price: 6.00, is_available: true, image_url: null },
 
-                if (categoriesResponse.ok) {
-                    const categoriesData = await categoriesResponse.json();
-                    setCategories(categoriesData);
-                }
-            } catch (error) {
-                console.error('Erro ao carregar cardápio:', error);
+            // Saladas (category_id: 2)
+            { id: 3, category_id: 2, name: 'Salada Caesar', description: 'Alface romana, croutons, parmesão e molho caesar', price: 28.00, is_available: true, image_url: null },
+            { id: 15, category_id: 2, name: 'Salada Tropical', description: 'Mix de folhas, manga, abacaxi e molho especial', price: 25.00, is_available: true, image_url: null },
+            { id: 16, category_id: 2, name: 'Salada Mediterrânea', description: 'Rúcula, tomate seco, azeitonas e queijo feta', price: 30.00, is_available: true, image_url: null },
+            { id: 17, category_id: 2, name: 'Salada Fitness', description: 'Alface, pepino, cenoura ralada e molho low carb', price: 22.00, is_available: true, image_url: null },
 
-                // Mock data for development        
-                const mockCategories = [
-                    { id: 1, name: 'Bebidas', display_order: 1 },
-                    { id: 2, name: 'Saladas', display_order: 2 },
-                    { id: 3, name: 'Pratos Principais', display_order: 3 },
-                    { id: 4, name: 'Lanches', display_order: 4 },
-                    { id: 5, name: 'Sobremesas', display_order: 5 }
-                ];
+            // Pratos Principais (category_id: 3)
+            { id: 4, category_id: 3, name: 'Picanha na Chapa', description: 'Picanha grelhada com acompanhamentos', price: 65.00, is_available: true, image_url: null },
+            { id: 20, category_id: 3, name: 'Filé Mignon', description: 'Filé mignon grelhado com purê de batata', price: 75.00, is_available: true, image_url: null },
+            { id: 21, category_id: 3, name: 'Frango à Parmegiana', description: 'Filé de frango empanado com molho e queijo', price: 42.00, is_available: true, image_url: null },
+            { id: 22, category_id: 3, name: 'Peixe ao Molho', description: 'Filé de peixe grelhado com molho especial', price: 55.00, is_available: true, image_url: null },
 
-                // Mock items for development - 4 items per category = 16 total items
-                const mockItems = [
-                    // Bebidas (category_id: 1)
-                    { id: 1, category_id: 1, name: 'Caipirinha da Casa', description: 'Tradicional com cachaça artesanal e frutas frescas', price: 18.00, is_available: true, image_url: null },
-                    { id: 2, category_id: 1, name: 'Cerveja Artesanal', description: 'Seleção de cervejas locais', price: 12.00, is_available: true, image_url: null },
-                    { id: 7, category_id: 1, name: 'Suco Natural', description: 'Sabores variados de frutas frescas', price: 10.00, is_available: true, image_url: null },
-                    { id: 8, category_id: 1, name: 'Refrigerante', description: 'Coca-Cola, Guaraná, Fanta', price: 6.00, is_available: true, image_url: null },
+            // Lanches (category_id: 4)
+            { id: 5, category_id: 4, name: 'Sanduíche da Casa', description: 'Pão artesanal, carne desfiada e queijo coalho', price: 32.00, is_available: true, image_url: null },
+            { id: 27, category_id: 4, name: 'Hambúrguer Artesanal', description: 'Hambúrguer bovino com queijo e acompanhamentos', price: 28.00, is_available: true, image_url: null },
+            { id: 28, category_id: 4, name: 'X-Burger Especial', description: 'Pão, hambúrguer, queijo, bacon e ovo', price: 35.00, is_available: true, image_url: null },
+            { id: 29, category_id: 4, name: 'Misto Quente', description: 'Pão, presunto, queijo e maionese', price: 15.00, is_available: true, image_url: null },
 
-                    // Saladas (category_id: 2)
-                    { id: 3, category_id: 2, name: 'Salada Caesar', description: 'Alface romana, croutons, parmesão e molho caesar', price: 28.00, is_available: true, image_url: null },
-                    { id: 15, category_id: 2, name: 'Salada Tropical', description: 'Mix de folhas, manga, abacaxi e molho especial', price: 25.00, is_available: true, image_url: null },
-                    { id: 16, category_id: 2, name: 'Salada Mediterrânea', description: 'Rúcula, tomate seco, azeitonas e queijo feta', price: 30.00, is_available: true, image_url: null },
-                    { id: 17, category_id: 2, name: 'Salada Fitness', description: 'Alface, pepino, cenoura ralada e molho low carb', price: 22.00, is_available: true, image_url: null },
+            // Sobremesas (category_id: 5)
+            { id: 6, category_id: 5, name: 'Pudim de Leite', description: 'Receita tradicional da casa', price: 15.00, is_available: true, image_url: null },
+            { id: 36, category_id: 5, name: 'Torta de Limão', description: 'Torta gelada de limão siciliano', price: 18.00, is_available: true, image_url: null },
+            { id: 37, category_id: 5, name: 'Brownie', description: 'Brownie quente com sorvete', price: 20.00, is_available: true, image_url: null },
+            { id: 38, category_id: 5, name: 'Mousse de Maracujá', description: 'Mousse leve e refrescante', price: 16.00, is_available: true, image_url: null },
+        ];
 
-                    // Pratos Principais (category_id: 3)
-                    { id: 4, category_id: 3, name: 'Picanha na Chapa', description: 'Picanha grelhada com acompanhamentos', price: 65.00, is_available: true, image_url: null },
-                    { id: 20, category_id: 3, name: 'Filé Mignon', description: 'Filé mignon grelhado com purê de batata', price: 75.00, is_available: true, image_url: null },
-                    { id: 21, category_id: 3, name: 'Frango à Parmegiana', description: 'Filé de frango empanado com molho e queijo', price: 42.00, is_available: true, image_url: null },
-                    { id: 22, category_id: 3, name: 'Peixe ao Molho', description: 'Filé de peixe grelhado com molho especial', price: 55.00, is_available: true, image_url: null },
-
-                    // Lanches (category_id: 4)
-                    { id: 5, category_id: 4, name: 'Sanduíche da Casa', description: 'Pão artesanal, carne desfiada e queijo coalho', price: 32.00, is_available: true, image_url: null },
-                    { id: 27, category_id: 4, name: 'Hambúrguer Artesanal', description: 'Hambúrguer bovino com queijo e acompanhamentos', price: 28.00, is_available: true, image_url: null },
-                    { id: 28, category_id: 4, name: 'X-Burger Especial', description: 'Pão, hambúrguer, queijo, bacon e ovo', price: 35.00, is_available: true, image_url: null },
-                    { id: 29, category_id: 4, name: 'Misto Quente', description: 'Pão, presunto, queijo e maionese', price: 15.00, is_available: true, image_url: null },
-
-                    // Sobremesas (category_id: 5)
-                    { id: 6, category_id: 5, name: 'Pudim de Leite', description: 'Receita tradicional da casa', price: 15.00, is_available: true, image_url: null },
-                    { id: 36, category_id: 5, name: 'Torta de Limão', description: 'Torta gelada de limão siciliano', price: 18.00, is_available: true, image_url: null },
-                    { id: 37, category_id: 5, name: 'Brownie', description: 'Brownie quente com sorvete', price: 20.00, is_available: true, image_url: null },
-                    { id: 38, category_id: 5, name: 'Mousse de Maracujá', description: 'Mousse leve e refrescante', price: 16.00, is_available: true, image_url: null },
-                ];
-
-                setCategories(mockCategories);
-                setMenuItems(mockItems);
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        fetchMenuData();
+        setCategories(mockCategories);
+        setMenuItems(mockItems);
+        setLoading(false);
     }, []);
-
-
 
     const orderWhatsApp = (itemName: string, price: number) => {
         const phoneNumber = '5586995483983';
