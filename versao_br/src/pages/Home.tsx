@@ -6,6 +6,7 @@ import EventsSection from '../ShowsEventos';
 import GallerySection from '../Geleria';
 import TestimonialsSection from '../Depoimentos';
 import Localizacao from '../Localizacao';
+import Footer from '../Footer';
 
 const Home = () => {
     return (
@@ -34,6 +35,9 @@ const Home = () => {
 
             {/* Seção de Contato */}
             <Localizacao />
+
+            {/* Rodapé */}
+            <Footer />
         </div>
     );
 }
