@@ -7,6 +7,9 @@ import { Phone, MapPin } from 'lucide-react';
 // Framer Motion
 import { motion } from 'framer-motion';
 
+// ImageWithFallback component
+import ImageWithFallback from './ImageWithFallback';
+
 // Images
 // import bull_logo from '../images/bull_4.png';
 
@@ -148,16 +151,18 @@ export default function About() {
                         variants={item}
                     >
                         <div className="flex items-center justify-center w-full h-full px-6 sm:px-10 md:px-16 lg:px-24 xl:px-32 py-16">
-                            <div className="flex items-center justify-center gap-10">
+                            <div className="flex items-center justify-center">
                                 <motion.div 
                                     className="w-[220px] sm:w-60 md:w-[260px] lg:w-[280px] aspect-9/16 overflow-hidden shadow-lg rounded-xl"
                                     whileHover={{ y: -10 }}
                                     transition={{ type: "spring", stiffness: 300 }}
                                 >
-                                    <img
-                                        src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.1.0&auto=format&fit=crop&q=80&w=1170"
-                                        alt="Ambiente Versão Brasileira"
+                                    <ImageWithFallback
+                                        src=""
+                                        alt="Versão Brasileira"
                                         className="w-full h-full object-cover"
+                                        fallbackClassName="w-full h-full flex flex-col items-center justify-center bg-neutral-700 text-secondary p-4 text-center"
+                                        placeholder="Versão Brasileira"
                                     />
                                 </motion.div>
                             </div>

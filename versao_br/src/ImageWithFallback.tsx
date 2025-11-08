@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { ImageIcon } from 'lucide-react';
+import bull_logo from '/bull_5.png';
 
 interface ImageWithFallbackProps {
     src: string;
@@ -28,13 +29,27 @@ export default function ImageWithFallback({
         setIsLoading(false);
     };
 
+    // Se o src estiver vazio, mostra o fallback imediatamente
+    if (!src) {
+        return (
+            <div className={`flex items-center justify-center bg-neutral-700 ${fallbackClassName || className}`}>
+                <div className="text-center flex flex-col items-center justify-center w-full h-full p-2">
+                    <img width="80" height="80" src={bull_logo} alt="Logo Versão Brasileira" className="mx-auto" />
+                    <p className="text-sm md:text-base text-neutral-400 mt-2">
+                        {placeholder || 'Versão Brasileira'}
+                    </p>
+                </div>
+            </div>
+        );
+    }
+
     if (imageError) {
         return (
-            <div className={`flex items-center justify-center bg-neutral-border text-neutral-text-secondary ${fallbackClassName || className}`}>
-                <div className="text-center">
-                    <ImageIcon className="w-8 h-8 mx-auto mb-2 opacity-50" />
-                    <p className="text-sm opacity-75">
-                        {placeholder || 'Imagem não disponível'}
+            <div className={`flex items-center justify-center bg-neutral-700 ${fallbackClassName || className}`}>
+                <div className="text-center flex flex-col items-center justify-center w-full h-full p-2">
+                    <img width="80" height="80" src={bull_logo} alt="Logo Versão Brasileira" className="mx-auto" />
+                    <p className="text-sm md:text-base text-neutral-400 mt-2">
+                        {placeholder || 'Imagem indisponível'}
                     </p>
                 </div>
             </div>
@@ -44,7 +59,7 @@ export default function ImageWithFallback({
     return (
         <div className="relative">
             {isLoading && (
-                <div className={`absolute inset-0 flex items-center justify-center bg-neutral-border animate-pulse ${className}`}>
+                <div className={`absolute inset-0 flex items-center justify-center bg-neutral-700 animate-pulse ${className}`}>
                     <div className="text-neutral-text-secondary">
                         <ImageIcon className="w-6 h-6 opacity-50" />
                     </div>

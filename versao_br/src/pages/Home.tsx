@@ -5,7 +5,7 @@ import Cardapio from '../MenuCardapio';
 import EventsSection from '../ShowsEventos';
 import GallerySection from '../Geleria';
 import TestimonialsSection from '../Depoimentos';
-import Contato from '../Contato';
+import Localizacao from '../Localizacao';
 
 const Home = () => {
     return (
@@ -33,7 +33,7 @@ const Home = () => {
             <TestimonialsSection />
 
             {/* Seção de Contato */}
-            <Contato />
+            <Localizacao />
         </div>
     );
 }
