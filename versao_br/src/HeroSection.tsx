@@ -134,7 +134,6 @@ export default function HeroSection() {
             Versão Brasileira
           </motion.h1>
 
-          {/* SVG Decorativo */}
           <div className="flex justify-center mb-6">
             <svg
               width="250"

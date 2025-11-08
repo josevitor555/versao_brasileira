@@ -4,7 +4,8 @@ import About from '../Sobre';
 import Cardapio from '../MenuCardapio';
 import EventsSection from '../ShowsEventos';
 import GallerySection from '../Geleria';
-// import TestimonialsSection from '../Depoimentos';
+import TestimonialsSection from '../Depoimentos';
+import Contato from '../Contato';
 
 const Home = () => {
     return (
@@ -29,7 +30,10 @@ const Home = () => {
             <GallerySection />
 
             {/* Seção de Depoimentos */}
-            {/* <TestimonialsSection /> */}
+            <TestimonialsSection />
+
+            {/* Seção de Contato */}
+            <Contato />
         </div>
     );
 }

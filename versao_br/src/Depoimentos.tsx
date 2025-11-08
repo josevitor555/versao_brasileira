@@ -1,155 +1,106 @@
 import { useState, useEffect } from 'react';
-import { Star, Quote, ChevronLeft, ChevronRight } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Star } from 'lucide-react';
 
 interface Testimonial {
     id: number;
     name: string;
+    profession: string;
     location?: string;
     rating: number;
-    comment: string;
-    date: string;
-    image_url?: string;
+    text: string;
+    photo: string;
 }
 
-// Mock data for testimonials
-const mockTestimonials: Testimonial[] = [
+const testimonials: Testimonial[] = [
     {
         id: 1,
-        name: 'Maria Silva',
-        location: 'São Gonçalo do Piauí',
+        name: "Sarah Chen",
+        profession: "Designer de Produto",
+        location: "São Francisco",
         rating: 5,
-        comment: 'Ambiente incrível! A comida é deliciosa e os shows ao vivo são espetaculares. Minha família adora vir aqui aos fins de semana. O atendimento é sempre muito carinhoso.',
-        date: '2024-10-15',
-        image_url: 'https://images.unsplash.com/photo-1494790108755-2616b612b786?w=150&h=150&fit=crop&crop=face'
+        text: "A atenção aos detalhes e a abordagem de design cuidadosa superaram todas as minhas expectativas. Isso é exatamente o que eu estava procurando.",
+        photo: "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=150&h=150&fit=crop&crop=face"
     },
     {
         id: 2,
-        name: 'João Santos',
-        location: 'Teresina',
+        name: "Marcus Rodriguez",
+        profession: "Diretor Criativo",
+        location: "Nova York",
         rating: 5,
-        comment: 'Venho desde a inauguração em 2020 e nunca me decepcionei. A picanha na chapa é incomparável e o ambiente familiar é perfeito para trazer as crianças.',
-        date: '2024-10-20',
-        image_url: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face'
+        text: "Trabalho absolutamente impressionante. O profissionalismo e a criatividade da equipe deram vida à nossa visão de formas que nunca imaginamos.",
+        photo: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face"
     },
     {
         id: 3,
-        name: 'Ana Costa',
-        location: 'Floriano',
+        name: "Emma Thompson",
+        profession: "Estrategista de Marca",
+        location: "Londres",
         rating: 5,
-        comment: 'Os shows de MPB são fantásticos! Já trouxe vários amigos e todos ficaram encantados. O cardápio tem opções para todos os gostos e o preço é justo.',
-        date: '2024-10-25',
-        image_url: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face'
+        text: "Trabalhar com esta equipe foi transformador para a nossa marca. As percepções e a execução deles são verdadeiramente de nível mundial.",
+        photo: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face"
     },
     {
         id: 4,
-        name: 'Carlos Oliveira',
-        location: 'Picos',
+        name: "David Kim",
+        profession: "Empreendedor de Tecnologia",
+        location: "Seul",
         rating: 5,
-        comment: 'Excelente para eventos familiares! Comemoramos o aniversário da minha mãe aqui e foi perfeito. A equipe é muito atenciosa e a comida estava impecável.',
-        date: '2024-11-01',
-        image_url: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&h=150&fit=crop&crop=face'
+        text: "A combinação perfeita de criatividade e funcionalidade. Eles entenderam as nossas necessidades e entregaram além dos nossos sonhos mais ousados.",
+        photo: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face"
     },
     {
         id: 5,
-        name: 'Lucia Ferreira',
-        location: 'São Gonçalo do Piauí',
+        name: "Sofia Andersson",
+        profession: "Diretora de Marketing",
+        location: "Estocolmo",
         rating: 5,
-        comment: 'Adoro a atmosfera acolhedora e a diversidade musical. É o meu lugar favorito para relaxar depois do trabalho. As caipirinhas são as melhores da região!',
-        date: '2024-11-05',
-        image_url: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=150&h=150&fit=crop&crop=face'
-    },
-    {
-        id: 6,
-        name: 'Roberto Lima',
-        location: 'Uruçuí',
-        rating: 5,
-        comment: 'Lugar excepcional! A combinação de boa música, comida saborosa e ambiente familiar é única. Recomendo para todos que visitam a região.',
-        date: '2024-11-07',
-        image_url: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face'
+        text: "Qualidade e serviço excepcionais. Os resultados falam por si só - nosso engajamento aumentou drasticamente.",
+        photo: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=150&h=150&fit=crop&crop=face"
     }
 ];
 
 export default function TestimonialsSection() {
-    const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
     const [currentIndex, setCurrentIndex] = useState(0);
-    const [loading, setLoading] = useState(true);
+    const [isAutoScrolling, setIsAutoScrolling] = useState(true);
 
     useEffect(() => {
-        const fetchTestimonials = async () => {
-            try {
-                // In the future, this could fetch from an API
-                // const response = await fetch('/api/testimonials');
-                // if (response.ok) {
-                //   const data = await response.json();
-                //   setTestimonials(data);
-                // }
+        if (!isAutoScrolling) return;
 
-                // For now, use mock data
-                setTestimonials(mockTestimonials);
-            } catch (error) {
-                console.error('Erro ao carregar depoimentos:', error);
-                setTestimonials(mockTestimonials);
-            } finally {
-                setLoading(false);
-            }
-        };
+        const interval = setInterval(() => {
+            setCurrentIndex((prev) => (prev + 1) % testimonials.length);
+        }, 4000);
 
-        fetchTestimonials();
-    }, []);
+        return () => clearInterval(interval);
+    }, [isAutoScrolling]);
 
     const nextTestimonial = () => {
+        setIsAutoScrolling(false);
         setCurrentIndex((prev) => (prev + 1) % testimonials.length);
     };
 
     const prevTestimonial = () => {
+        setIsAutoScrolling(false);
         setCurrentIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
-    };
-
-    const goToTestimonial = (index: number) => {
-        setCurrentIndex(index);
     };
 
     const renderStars = (rating: number) => {
         return Array.from({ length: 5 }, (_, i) => (
             <Star
                 key={i}
-                className={`w-5 h-5 ${i < rating ? 'text-secondary fill-current' : 'text-gray-300'
+                className={`w-4 h-4 ${i < rating ? 'text-primary fill-primary' : 'text-secondary'
                     }`}
             />
         ));
     };
 
-    const formatDate = (dateString: string) => {
-        const date = new Date(dateString);
-        return date.toLocaleDateString('pt-BR', {
-            day: 'numeric',
-            month: 'long',
-            year: 'numeric'
-        });
-    };
-
-    if (loading) {
-        return (
-            <section className="py-20 bg-neutral-bg">
-                <div className="container mx-auto px-4 text-center">
-                    <div className="text-neutral-text-secondary">Carregando depoimentos...</div>
-                </div>
-            </section>
-        );
-    }
-
-    if (testimonials.length === 0) {
-        return null;
-    }
-
     return (
-        <section id="testimonials" className="py-20 bg-black">
-            <div className="container mx-auto px-4">
-                <div className="text-center mb-16">
-                    <h2 className="text-4xl md:text-5xl font-heading font-semibold text-secondary mb-6">
-                        O Que Nossos Clientes Dizem
-                    </h2>
+        <section id='depoimentos' className="bg-black py-20 px-6">
+            <div className="max-w-6xl mx-auto">
 
+                <div className="text-center mb-16 animate-fade-in">
+                    <h2 className="text-4xl md:text-4xl font-light text-secondary mb-4 tracking-wide">
+                        O que as Pessoas Falam da Gente
+                    </h2>
                     <div className="flex justify-center mb-6">
                         <svg
                             width="250"
@@ -158,7 +109,7 @@ export default function TestimonialsSection() {
                             fill="none"
                             xmlns="http://www.w3.org/2000/svg"
                         >
-                            <line x1="0" y1="6" x2="250" y2="6" stroke="#D1BB9E" strokeWidth="1" opacity="0.5" />
+                            <line x1="0" y1="6" x2="250" y2="6" stroke="#D1BB9E" stroke-width="1" opacity="0.5" />
 
                             <polygon points="117,2 121,6 117,10 113,6" fill="#D1BB9E" />
                             <polygon points="123,2 127,6 123,10 119,6" fill="#D1BB9E" />
@@ -169,100 +120,107 @@ export default function TestimonialsSection() {
                         </svg>
                     </div>
 
-                    <p className="text-lg text-neutral-text-secondary max-w-2xl mx-auto">
-                        Confira os depoimentos de quem já viveu momentos especiais conosco
-                    </p>
                 </div>
 
-                <div className="max-w-6xl mx-auto">
-                    <div className="relative p-6 border border-accent">
-                        <div className="bg-neutral-section rounded-2xl p-8 md:p-12 shadow-lg">
-                            <div className="flex items-start space-x-4 mb-6">
-                                <Quote className="w-8 h-8 text-neutral-button-primary shrink-0 mt-1" />
-                                <div className="flex-1">
-                                    <div className="flex items-center space-x-4 mb-4">
-                                        {testimonials[currentIndex].image_url && (
-                                            <img
-                                                src={testimonials[currentIndex].image_url}
-                                                alt={testimonials[currentIndex].name}
-                                                className="w-16 h-16 rounded-full object-cover"
-                                            />
-                                        )}
-                                        <div>
-                                            <h3 className="text-xl font-heading font-bold text-neutral-text">
-                                                {testimonials[currentIndex].name}
-                                            </h3>
-                                            {testimonials[currentIndex].location && (
-                                                <p className="text-neutral-text-secondary">
-                                                    {testimonials[currentIndex].location}
+                <div className="relative">
+                    {/* Navigation Arrows */}
+                    <button
+                        onClick={prevTestimonial}
+                        className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white/80 backdrop-blur-sm hover:bg-white/90 rounded-full p-3 shadow-lg transition-all duration-300 hover:shadow-xl hover:scale-105"
+                        aria-label="Previous testimonial"
+                    >
+                        <ChevronLeft className="w-6 h-6 text-primary cursor-pointer" />
+                    </button>
+
+                    <button
+                        onClick={nextTestimonial}
+                        className="absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white/80 backdrop-blur-sm hover:bg-white/90 rounded-full p-3 shadow-lg transition-all duration-300 hover:shadow-xl hover:scale-105"
+                        aria-label="Next testimonial"
+                    >
+                        <ChevronRight className="w-6 h-6 text-primary cursor-pointer" />
+                    </button>
+
+                    {/* Testimonial Cards Container */}
+                    <div className="overflow-hidden mx-12">
+                        <div
+                            className="flex transition-transform duration-700 ease-in-out"
+                            style={{
+                                transform: `translateX(-${currentIndex * 100}%)`
+                            }}
+                        >
+                            {testimonials.map((testimonial) => (
+                                <div
+                                    key={testimonial.id}
+                                    className="w-full shrink-0 px-4"
+                                >
+                                    <div className="bg-transparent rounded-3xl shadow-lg hover:shadow-xl transition-all duration-500 p-8 md:p-12 max-w-4xl mx-auto transform hover:-translate-y-1">
+                                        {/* Content */}
+                                        <div className="text-center">
+                                            {/* Profile Photo */}
+                                            <div className="mb-8">
+                                                <img
+                                                    src={testimonial.photo}
+                                                    alt={testimonial.name}
+                                                    className="w-20 h-20 md:w-24 md:h-24 rounded-full mx-auto object-cover shadow-lg ring-4 ring-light transition-transform duration-300 hover:scale-105"
+                                                />
+                                            </div>
+
+                                            {/* Star Rating */}
+                                            <div className="flex justify-center gap-12 mb-6">
+                                                {renderStars(testimonial.rating)}
+                                            </div>
+
+                                            {/* Testimonial Text */}
+                                            <blockquote className="text-secondary text-lg md:text-xl leading-relaxed mb-8 font-light italic max-w-3xl mx-auto">
+                                                "{testimonial.text}"
+                                            </blockquote>
+
+                                            {/* Name and Profession */}
+                                            <div className="space-y-1">
+                                                <h3 className="text-white text-xl md:text-2xl font-medium">
+                                                    {testimonial.name}
+                                                </h3>
+                                                <p className="text-secondary text-sm md:text-base">
+                                                    {testimonial.profession}
+                                                    {testimonial.location && (
+                                                        <span className="text-accent"> • {testimonial.location}</span>
+                                                    )}
                                                 </p>
-                                            )}
-                                            <div className="flex items-center space-x-1 mt-1">
-                                                {renderStars(testimonials[currentIndex].rating)}
                                             </div>
                                         </div>
                                     </div>
-
-                                    <blockquote className="text-lg text-accent leading-relaxed mb-4 italic">
-                                        "{testimonials[currentIndex].comment}"
-                                    </blockquote>
-
-                                    <p className="text-sm text-neutral-text-secondary">
-                                        {formatDate(testimonials[currentIndex].date)}
-                                    </p>
                                 </div>
-                            </div>
-
-                            {/* Navigation Arrows */}
-                            {testimonials.length > 1 && (
-                                <>
-                                    <button
-                                        onClick={prevTestimonial}
-                                        className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-secondary cursor-pointer shadow-lg rounded-full p-3 hover:bg-neutral-section transition-colors border border-neutral-border"
-                                    >
-                                        <ChevronLeft className="w-5 h-5 text-neutral-text" />
-                                    </button>
-                                    <button
-                                        onClick={nextTestimonial}
-                                        className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-secondary cursor-pointer shadow-lg rounded-full p-3 hover:bg-neutral-section transition-colors border border-neutral-border"
-                                    >
-                                        <ChevronRight className="w-5 h-5 text-neutral-text" />
-                                    </button>
-                                </>
-                            )}
-                        </div> {/* <-- FECHA A .bg-neutral-section AQUI */}
-
-                        {/* Pagination Dots */}
-                        {testimonials.length > 1 && (
-                            <div className="flex justify-center mt-8 space-x-2">
-                                {testimonials.map((_, index) => (
-                                    <button
-                                        key={index}
-                                        onClick={() => goToTestimonial(index)}
-                                        className={`w-3 h-3 rounded-full transition-all ${index === currentIndex ? 'bg-neutral-button-primary w-8' : 'bg-neutral-border hover:bg-neutral-button'
-                                            }`}
-                                    />
-                                ))}
-                            </div>
-                        )}
-
-                        {/* Statistics */}
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-16">
-                            <div className="text-center p-6 bg-neutral-section rounded-lg border border-neutral-border">
-                                <div className="text-3xl font-heading font-bold text-neutral-text mb-2">500+</div>
-                                <p className="text-neutral-text-secondary"> Clientes Satisfeitos </p>
-                            </div>
-                            <div className="text-center p-6 bg-neutral-section rounded-lg border border-neutral-border">
-                                <div className="text-3xl font-heading font-bold text-neutral-text mb-2">4.9</div>
-                                <div className="flex justify-center space-x-1 mb-2">{renderStars(5)}</div>
-                                <p className="text-neutral-text-secondary"> Avaliação Média </p>
-                            </div>
-                            <div className="text-center p-6 bg-neutral-section rounded-lg border border-neutral-border">
-                                <div className="text-3xl font-heading font-bold text-neutral-text mb-2">4</div>
-                                <p className="text-neutral-text-secondary"> Anos de Tradição </p>
-                            </div>
+                            ))}
                         </div>
                     </div>
+                </div>
+
+                {/* Dots Indicator */}
+                <div className="flex justify-center gap-2 mt-12">
+                    {testimonials.map((_, index) => (
+                        <button
+                            key={index}
+                            onClick={() => {
+                                setIsAutoScrolling(false);
+                                setCurrentIndex(index);
+                            }}
+                            className={`w-3 h-3 rounded-full transition-all duration-300 ${index === currentIndex
+                                ? 'bg-primary scale-110'
+                                : 'bg-secondary hover:bg-primary hover:scale-105'
+                                }`}
+                            aria-label={`Go to testimonial ${index + 1}`}
+                        />
+                    ))}
+                </div>
+
+                {/* View More Button */}
+                <div className="text-center mt-16">
+                    <button className="group bg-primary hover:bg-[#7A654A] text-white px-8 py-4 rounded-full font-medium cursor-pointer transition-all duration-300 hover:shadow-lg hover:scale-105 hover:-translate-y-0.5">
+                        <span className="flex items-center gap-2">
+                            Ver Todas as Avaliações
+                            <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
+                        </span>
+                    </button>
                 </div>
             </div>
         </section>
