@@ -16,6 +16,27 @@ interface Event {
 }
 
 export default function Footer() {
+    // Variações de animação para fade-in
+    const container = {
+        hidden: { opacity: 0 },
+        show: {
+            opacity: 1,
+            transition: {
+                staggerChildren: 0.1
+            }
+        }
+    };
+
+    const item = {
+        hidden: { opacity: 0, y: 20 },
+        show: { opacity: 1, y: 0, transition: { duration: 0.5 } }
+    };
+
+    const cardItem = {
+        hidden: { opacity: 0, y: 30 },
+        show: { opacity: 1, y: 0, transition: { duration: 0.5 } }
+    };
+
     // Dados mock para os produtos do cardápio
     const menuItems: MenuItem[] = [
         { id: 1, name: 'Caipirinha da Casa', price: 18.00 },
@@ -61,9 +82,18 @@ export default function Footer() {
     return (
         <footer className="bg-black text-white py-12 border-t border-secondary/20">
             <div className="container mx-auto px-4">
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <motion.div 
+                    className="grid grid-cols-1 md:grid-cols-3 gap-8"
+                    initial="hidden"
+                    whileInView="show"
+                    viewport={{ once: true, amount: 0.1 }}
+                    variants={container}
+                >
                     {/* Logo e Informações da Empresa */}
-                    <div className="flex flex-col items-start">
+                    <motion.div 
+                        className="flex flex-col items-start"
+                        variants={item}
+                    >
                         <div className="flex items-center space-x-3 mb-6">
                             <div className="w-12 h-12 rounded-full flex items-center justify-center">
                                 <img src={logo_bull5} alt="Logo Versão Brasileira" className="w-full h-full object-contain" />
@@ -73,7 +103,10 @@ export default function Footer() {
                         <p className="text-neutral-text-secondary mb-4 max-w-xs">
                             O melhor da gastronomia e entretenimento brasileiro em um só lugar.
                         </p>
-                        <div className="flex space-x-4">
+                        <motion.div 
+                            className="flex space-x-4"
+                            variants={item}
+                        >
                             <motion.button
                                 whileHover={{ scale: 1.1 }}
                                 whileTap={{ scale: 0.9 }}
@@ -84,18 +117,22 @@ export default function Footer() {
                                     const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
                                     window.open(url, '_blank');
                                 }}
+                                variants={cardItem}
                             >
                                 <MessageCircle className="w-5 h-5" />
                             </motion.button>
-                        </div>
-                    </div>
+                        </motion.div>
+                    </motion.div>
 
                     {/* Próximos Eventos */}
-                    <div>
-                        <h3 className="text-xl font-heading font-semibold text-secondary mb-4 flex items-center">
+                    <motion.div variants={item}>
+                        <motion.h3 
+                            className="text-xl font-heading font-semibold text-secondary mb-4 flex items-center"
+                            variants={item}
+                        >
                             <Calendar className="w-5 h-5 mr-2" />
                             Próximos Eventos
-                        </h3>
+                        </motion.h3>
                         <div className="space-y-3">
                             {events.map((event) => (
                                 <motion.div
@@ -103,6 +140,10 @@ export default function Footer() {
                                     className="bg-neutral-section p-3 rounded-lg cursor-pointer hover:bg-neutral-border transition-colors"
                                     whileHover={{ x: 5 }}
                                     onClick={() => reserveWhatsApp(event.title)}
+                                    variants={cardItem}
+                                    initial="hidden"
+                                    whileInView="show"
+                                    viewport={{ once: true, amount: 0.1 }}
                                 >
                                     <h4 className="font-medium text-white">{event.title}</h4>
                                     <div className="flex items-center text-sm text-neutral-text-secondary mt-1">
@@ -119,13 +160,16 @@ export default function Footer() {
                                 </motion.div>
                             ))}
                         </div>
-                    </div>
+                    </motion.div>
 
                     {/* Produtos do Cardápio */}
-                    <div>
-                        <h3 className="text-xl font-heading font-semibold text-secondary mb-4">
+                    <motion.div variants={item}>
+                        <motion.h3 
+                            className="text-xl font-heading font-semibold text-secondary mb-4"
+                            variants={item}
+                        >
                             Destaques do Cardápio
-                        </h3>
+                        </motion.h3>
                         <div className="space-y-3">
                             {menuItems.map((item) => (
                                 <motion.div
@@ -133,6 +177,10 @@ export default function Footer() {
                                     className="bg-neutral-section p-3 rounded-lg cursor-pointer hover:bg-neutral-border transition-colors flex justify-between items-center"
                                     whileHover={{ x: 5 }}
                                     onClick={() => orderWhatsApp(item.name)}
+                                    variants={cardItem}
+                                    initial="hidden"
+                                    whileInView="show"
+                                    viewport={{ once: true, amount: 0.1 }}
                                 >
                                     <div>
                                         <h4 className="font-medium text-white">{item.name}</h4>
@@ -148,13 +196,19 @@ export default function Footer() {
                                 </motion.div>
                             ))}
                         </div>
-                    </div>
-                </div>
+                    </motion.div>
+                </motion.div>
 
                 {/* Direitos Autorais */}
-                <div className="border-t border-secondary/20 mt-10 pt-6 text-center text-neutral-text-secondary">
+                <motion.div 
+                    className="border-t border-secondary/20 mt-10 pt-6 text-center text-neutral-text-secondary"
+                    initial="hidden"
+                    whileInView="show"
+                    viewport={{ once: true, amount: 0.1 }}
+                    variants={item}
+                >
                     <p>© {new Date().getFullYear()} Versão Brasileira. Todos os direitos reservados.</p>
-                </div>
+                </motion.div>
             </div>
         </footer>
     );
