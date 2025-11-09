@@ -1,10 +1,15 @@
 // Interfaces e tipos
 import { useState, useEffect } from 'react';
+
+// Icons
 import { ChevronRight, Star } from 'lucide-react';
+
+// Framer motion
 import { motion } from 'framer-motion';
+
+// Image with fallback
 import ImageWithFallback from './ImageWithFallback';
 
-// Definição da interface para os depoimentos
 interface Testimonial {
     id: number;
     name: string;
@@ -15,7 +20,6 @@ interface Testimonial {
     photo: string;
 }
 
-// Dados dos depoimentos
 const testimonials: Testimonial[] = [
     {
         id: 1,
@@ -64,7 +68,6 @@ const testimonials: Testimonial[] = [
     }
 ];
 
-// Componente de seção de depoimentos
 export default function TestimonialsSection() {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [isAutoScrolling, setIsAutoScrolling] = useState(true);
@@ -104,7 +107,7 @@ export default function TestimonialsSection() {
     };
 
     return (
-        <section id='depoimentos' className="bg-black py-20 px-4 sm:px-6">
+        <section id='depoimentos' className="bg-[#181818] py-20 px-4 sm:px-6">
             <div className="max-w-6xl mx-auto px-4 sm:px-6">
 
                 <motion.div 
@@ -144,7 +147,6 @@ export default function TestimonialsSection() {
                 </motion.div>
 
                 <div className="relative">
-                    {/* Botões de navegação */}
                     {/* <button
                         onClick={prevTestimonial}
                         className="absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white/80 backdrop-blur-sm hover:bg-white/90 rounded-full p-3 shadow-lg transition-all duration-300 hover:shadow-xl hover:scale-105"
@@ -198,7 +200,6 @@ export default function TestimonialsSection() {
                                                 </div>
                                             </motion.div>
 
-                                            {/* Avaliação por estrelas */}
                                             <motion.div 
                                                 className="flex justify-center gap-2 mb-6"
                                                 initial={{ opacity: 0 }}
@@ -209,7 +210,6 @@ export default function TestimonialsSection() {
                                                 {renderStars(testimonial.rating)}
                                             </motion.div>
 
-                                            {/* Texto do depoimento */}
                                             <motion.blockquote 
                                                 className="text-secondary text-lg md:text-xl leading-relaxed mb-8 font-light italic max-w-3xl mx-auto"
                                                 initial={{ opacity: 0, y: 10 }}
@@ -220,7 +220,6 @@ export default function TestimonialsSection() {
                                                 "{testimonial.text}"
                                             </motion.blockquote>
 
-                                            {/* Nome e profissão */}
                                             <motion.div 
                                                 className="space-y-1"
                                                 initial={{ opacity: 0, y: 10 }}
@@ -246,7 +245,6 @@ export default function TestimonialsSection() {
                     </div>
                 </div>
 
-                {/* Indicador de pontos */}
                 <motion.div 
                     className="flex justify-center gap-2 mt-12"
                     initial={{ opacity: 0, y: 20 }}
@@ -270,7 +268,6 @@ export default function TestimonialsSection() {
                     ))}
                 </motion.div>
 
-                {/* Botão para ver todas as avaliações */}
                 <motion.div 
                     className="text-center mt-16"
                     initial={{ opacity: 0, y: 20 }}

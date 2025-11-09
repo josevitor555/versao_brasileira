@@ -33,7 +33,7 @@ export default function About() {
     };
 
     return (
-        <section id="sobre" className="bg-black py-16">
+        <section id="sobre" className="bg-[#181818] py-16">
             <div className="max-w-7xl mx-auto">
                 <motion.div 
                     className="flex flex-col lg:flex-row gap-14 p-8 items-start"
@@ -49,7 +49,7 @@ export default function About() {
                         >
                             Sobre Nós
                         </motion.h1>
-                        {/* SVG Decorativo */}
+
                         <motion.div className="flex justify-start mb-4" variants={item}>
                             <svg
                                 width="200"
@@ -113,7 +113,6 @@ export default function About() {
                             encontro para amigos e famílias que buscam qualidade, conforto e entretenimento.
                         </motion.p>
 
-                        {/* Botões */}
                         <motion.div 
                             className="flex flex-col sm:flex-row gap-4 mt-6"
                             variants={item}

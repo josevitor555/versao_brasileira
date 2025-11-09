@@ -76,7 +76,6 @@ export default function HeroSection() {
   return (
     <section id="home" className="relative h-screen overflow-hidden">
 
-      {/* Background Slider */}
       <div className="absolute inset-0">
         {heroImages.map((image, index) => (
           <div
@@ -96,7 +95,6 @@ export default function HeroSection() {
 
       </div>
 
-      {/* Navigation Arrows */}
       <button
         onClick={prevSlide}
         className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-primary/20 backdrop-blur-sm text-primary p-3 rounded-full hover:bg-primary/30 transition-all z-10"
@@ -110,7 +108,6 @@ export default function HeroSection() {
         <ChevronRight className="w-6 h-6" />
       </button>
 
-      {/* Content */}
       <div className="relative z-10 flex items-center justify-center h-full text-center text-primary px-4">
         <motion.div
           className="max-w-4xl"
@@ -118,7 +115,6 @@ export default function HeroSection() {
           initial="hidden"
           animate="show"
         >
-          {/* Logo Image */}
           <motion.div className="flex justify-center mb-6" variants={item}>
             <img
               src={bull_logo}
@@ -194,7 +190,6 @@ export default function HeroSection() {
         </motion.div>
       </div>
 
-      {/* Slide Indicators */}
       <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-2 z-10">
         {heroImages.map((_, index) => (
           <button

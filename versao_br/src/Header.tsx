@@ -52,7 +52,6 @@ export default function Header() {
                         <h1 className="text-xl font-heading font-semibold text-secondary whitespace-nowrap"> Versão Brasileira </h1>
                     </motion.div>
 
-                    {/* Desktop Navigation */}
                     <motion.nav className="hidden md:flex items-center space-x-3 lg:space-x-4 xl:space-x-5" variants={staggerChildren}>
                         <motion.button 
                             onClick={() => scrollToSection('home')} 
@@ -106,7 +105,6 @@ export default function Header() {
                         
                     </motion.nav>
 
-                    {/* Quick Contact Info */}
                     <motion.div className="hidden lg:flex items-center font-semibold space-x-3 text-secondary" variants={staggerChildren}>
                         <motion.div className="flex items-center space-x-1" variants={fadeIn}>
                             <Phone className="w-4 h-4 text-secondary" />
@@ -118,7 +116,6 @@ export default function Header() {
                         </motion.div>
                     </motion.div>
 
-                    {/* Mobile Menu Button */}
                     <motion.button
                         onClick={() => setIsMenuOpen(!isMenuOpen)}
                         className="md:hidden p-2 rounded-lg hover:bg-primary/20 transition-colors"
@@ -128,7 +125,6 @@ export default function Header() {
                     </motion.button>
                 </div>
 
-                {/* Mobile Navigation */}
                 {isMenuOpen && (
                     <motion.nav 
                         className="md:hidden py-4 border-t border-primary/20 backdrop-blur-lg bg-transparent"
@@ -159,7 +155,6 @@ export default function Header() {
                                 Localização
                             </button>
 
-                            {/* Quick Contact Info */}
                             <div className="pt-3 border-t border-primary/20">
                                 <div className="flex items-center space-x-2 text-base text-secondary">
                                     <Phone className="w-4 h-4 text-secondary" />

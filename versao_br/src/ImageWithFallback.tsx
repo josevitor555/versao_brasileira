@@ -29,7 +29,6 @@ export default function ImageWithFallback({
         setIsLoading(false);
     };
 
-    // Se o src estiver vazio, mostra o fallback imediatamente
     if (!src) {
         return (
             <div className={`flex items-center justify-center bg-neutral-700 ${fallbackClassName || className}`}>

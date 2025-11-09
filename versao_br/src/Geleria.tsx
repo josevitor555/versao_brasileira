@@ -13,7 +13,6 @@ import ImageWithFallback from './ImageWithFallback';
 // Images
 // import bull_logo from '/bull_5.png';
 
-// Definir o tipo para as imagens e vídeos
 interface GalleryItem {
     url: string;
     alt: string;
@@ -116,10 +115,8 @@ export default function GallerySection() {
 
     // Função para dividir os itens em colunas para o layout masonry
     const renderMasonryGrid = () => {
-        // Criar 4 colunas
         const columns: GalleryItem[][] = [[], [], [], []];
 
-        // Distribuir os itens nas colunas
         allItems.forEach((item, index) => {
             columns[index % 4].push(item);
         });
@@ -140,7 +137,6 @@ export default function GallerySection() {
                                 onClick={() => setSelectedItem({ url: item.url, type: item.type })}
                             >
                                 {item.type === 'video' ? (
-                                    // Exibir thumbnail para vídeos
                                     <div className="h-auto max-w-full rounded-lg bg-black flex items-center justify-center relative">
                                         <img
                                             src="/image_8.jpg"
@@ -173,7 +169,7 @@ export default function GallerySection() {
     };
 
     return (
-        <section id="galeria" className="py-20 bg-black relative z-10">
+        <section id="galeria" className="py-20 bg-[#181818] relative z-10">
             <div className="container mx-auto px-4">
                 <motion.div
                     className="text-center mb-12"
@@ -225,14 +221,12 @@ export default function GallerySection() {
                     </motion.p>
                 </motion.div>
 
-                {/* Masonry Grid - sem sistema de filtragem */}
                 <div className="overflow-hidden">
                     {renderMasonryGrid()}
                 </div>
 
             </div>
 
-            {/* Modal for enlarged item */}
             {selectedItem && (
                 <motion.div
                     className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4"
@@ -253,7 +247,6 @@ export default function GallerySection() {
                         exit={{ scale: 0.8, opacity: 0 }}
                         transition={{ type: "spring", stiffness: 300, damping: 30 }}
                     >
-                        {/* Botão de fechar posicionado fora do conteúdo */}
                         <motion.button
                             onClick={() => setSelectedItem(null)}
                             className="absolute -top-46 -right-4 text-white bg-black/60 hover:bg-black/80 rounded-full p-2 transition-colors z-20"
@@ -263,10 +256,8 @@ export default function GallerySection() {
                             <X className="w-6 h-6" />
                         </motion.button>
 
-                        {/* Container com tamanho limitado para o conteúdo */}
                         <div className="max-w-2xl max-h-[20vh] flex items-center justify-center">
                             {selectedItem.type === 'video' ? (
-                                // Exibir vídeo no modal
                                 <div className="max-w-full max-h-full rounded-lg">
                                     <video
                                         src={selectedItem.url}
@@ -276,7 +267,6 @@ export default function GallerySection() {
                                     />
                                 </div>
                             ) : (
-                                // Exibir imagem no modal
                                 <ImageWithFallback
                                     src={selectedItem.url}
                                     alt="Item ampliado"

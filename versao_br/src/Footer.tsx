@@ -16,7 +16,6 @@ interface Event {
 }
 
 export default function Footer() {
-    // Variações de animação para fade-in
     const container = {
         hidden: { opacity: 0 },
         show: {
@@ -37,7 +36,6 @@ export default function Footer() {
         show: { opacity: 1, y: 0, transition: { duration: 0.5 } }
     };
 
-    // Dados mock para os produtos do cardápio
     const menuItems: MenuItem[] = [
         { id: 1, name: 'Caipirinha da Casa', price: 18.00 },
         { id: 2, name: 'Picanha na Chapa', price: 65.00 },
@@ -45,7 +43,6 @@ export default function Footer() {
         { id: 4, name: 'Brownie com Sorvete', price: 20.00 }
     ];
 
-    // Dados mock para os próximos eventos
     const events: Event[] = [
         { id: 1, title: 'Show de MPB - João Silva', event_date: '2024-12-15', event_time: '20:00' },
         { id: 2, title: 'Noite de Samba', event_date: '2024-12-22', event_time: '19:30' },
@@ -80,7 +77,7 @@ export default function Footer() {
     };
 
     return (
-        <footer className="bg-black text-white py-12 border-t border-secondary/20">
+        <footer className="bg-[#181818] text-white py-12 border-t border-secondary/20">
             <div className="container mx-auto px-4">
                 <motion.div 
                     className="grid grid-cols-1 md:grid-cols-3 gap-8"
@@ -89,7 +86,6 @@ export default function Footer() {
                     viewport={{ once: true, amount: 0.1 }}
                     variants={container}
                 >
-                    {/* Logo e Informações da Empresa */}
                     <motion.div 
                         className="flex flex-col items-start"
                         variants={item}
@@ -124,7 +120,6 @@ export default function Footer() {
                         </motion.div>
                     </motion.div>
 
-                    {/* Próximos Eventos */}
                     <motion.div variants={item}>
                         <motion.h3 
                             className="text-xl font-heading font-semibold text-secondary mb-4 flex items-center"
@@ -162,7 +157,6 @@ export default function Footer() {
                         </div>
                     </motion.div>
 
-                    {/* Produtos do Cardápio */}
                     <motion.div variants={item}>
                         <motion.h3 
                             className="text-xl font-heading font-semibold text-secondary mb-4"
@@ -199,7 +193,6 @@ export default function Footer() {
                     </motion.div>
                 </motion.div>
 
-                {/* Direitos Autorais */}
                 <motion.div 
                     className="border-t border-secondary/20 mt-10 pt-6 text-center text-neutral-text-secondary"
                     initial="hidden"

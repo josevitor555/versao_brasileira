@@ -60,7 +60,7 @@ export default function ContactSection() {
     const mapEmbedUrl = "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.019547329454!2d-42.70810662522749!3d-6.003618693974443!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x7c168184ff92959%3A0x7e3523c7f3d0d8d5!2sVers%C3%A3o%20Brasileira!5e0!3m2!1spt-BR!2sbr!4v1708472897892!5m2!1spt-BR!2sbr";
 
     return (
-        <section id="localizacao" className="py-20 bg-black">
+        <section id="localizacao" className="py-20 bg-[#181818]">
             <div className="container mx-auto px-4">
                 <motion.div
                     className="text-center mb-12"
@@ -110,7 +110,6 @@ export default function ContactSection() {
                 </motion.div>
 
                 <div className="grid lg:grid-cols-2 gap-24 max-w-6xl mx-auto">
-                    {/* Contact Information */}
                     <motion.div
                         className="space-y-8"
                         initial={{ opacity: 0, x: -20 }}
@@ -145,7 +144,6 @@ export default function ContactSection() {
                             ))}
                         </div>
 
-                        {/* Quick Contact Button */}
                         <motion.div
                             className="bg-neutral-section p-6 rounded-lg text-start"
                             initial={{ opacity: 0, y: 10 }}
@@ -165,7 +163,6 @@ export default function ContactSection() {
                             </button>
                         </motion.div>
 
-                        {/* Social Media */}
                         <motion.div
                             className="bg-neutral-section p-6 rounded-lg"
                             initial={{ opacity: 0, y: 10 }}
@@ -197,7 +194,6 @@ export default function ContactSection() {
                         </motion.div>
                     </motion.div>
 
-                    {/* Map */}
                     <motion.iframe
                         src={mapEmbedUrl}
                         width="600"

@@ -95,7 +95,6 @@ export default function MenuSection() {
             { id: 5, name: 'Sobremesas', display_order: 5 }
         ];
 
-        // Mock items for development - 4 items per category = 16 total items
         const mockItems = [
             // Bebidas (category_id: 1)
             { id: 1, category_id: 1, name: 'Caipirinha da Casa', description: 'Tradicional com cachaça artesanal e frutas frescas', price: 18.00, is_available: true, image_url: null },
@@ -155,7 +154,7 @@ Por favor, confirmem a disponibilidade.`;
     }
 
     return (
-        <section id="cardapio" className="py-16 md:py-20 bg-black">
+        <section id="cardapio" className="py-16 md:py-20 bg-[#181818]">
             <div className="container mx-auto px-4">
                 <motion.div 
                     className="text-center mb-12"
@@ -197,7 +196,6 @@ Por favor, confirmem a disponibilidade.`;
                         Confira nossas especialidades e faça seu pedido
                     </motion.p>
 
-                    {/* Category Filter Buttons */}
                     {categories.length > 0 && (
                         <motion.div 
                             className="flex flex-wrap justify-center gap-2 mb-4"
@@ -232,7 +230,6 @@ Por favor, confirmem a disponibilidade.`;
                     )}
                 </motion.div>
 
-                {/* WhatsApp Quick Order Buttons */}
                 <motion.div 
                     className="flex flex-wrap justify-center gap-3 mb-12 md:mb-14"
                     initial="hidden"
@@ -296,7 +293,6 @@ Por favor, confirmem a disponibilidade.`;
                                     (selectedCategory === null || item.category_id === selectedCategory)
                             )
                             .map((item, _index, filteredItems) => {
-                                // Calcular o índice correto dentro da categoria específica
                                 const sameCategoryItems = filteredItems.filter(i => i.category_id === item.category_id);
                                 const categoryIndex = sameCategoryItems.findIndex(i => i.id === item.id);
 
@@ -333,7 +329,6 @@ Por favor, confirmem a disponibilidade.`;
                                     ]
                                 };
 
-                                // Selecionar imagem com base no índice da categoria
                                 const imgUrl = item.image_url || categoryImages[item.category_id][categoryIndex % categoryImages[item.category_id].length];
 
                                 return (
@@ -359,7 +354,6 @@ Por favor, confirmem a disponibilidade.`;
                                             </div>
                                         </div>
 
-                                        {/* Conteúdo */}
                                         <div className="flex flex-col items-start text-left p-3 w-full">
                                             <h3 className="text-lg font-medium text-secondary mt-2">
                                                 {item.name}

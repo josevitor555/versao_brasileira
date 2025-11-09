@@ -48,7 +48,6 @@ export default function EventsSection() {
     };
 
     useEffect(() => {
-        // Mock data for development
         const mockEvents = [
             {
                 id: 1,
@@ -132,7 +131,7 @@ export default function EventsSection() {
     }
 
     return (
-        <section id="eventos" className="py-20 bg-black relative z-10">
+        <section id="eventos" className="py-20 bg-[#181818] relative z-10">
             <div className="container mx-auto px-4">
                 <motion.div 
                     className="text-center mb-12"
