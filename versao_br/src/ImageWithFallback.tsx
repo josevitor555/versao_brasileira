@@ -8,6 +8,10 @@ interface ImageWithFallbackProps {
     className?: string;
     fallbackClassName?: string;
     placeholder?: string;
+    // Otimizações para performance
+    loading?: "lazy" | "eager";
+    decoding?: "async" | "sync" | "auto";
+    fetchPriority?: "high" | "low" | "auto";
 }
 
 export default function ImageWithFallback({
@@ -15,7 +19,10 @@ export default function ImageWithFallback({
     alt,
     className = '',
     fallbackClassName = '',
-    placeholder
+    placeholder,
+    loading = "lazy",
+    decoding = "async",
+    fetchPriority = "auto"
 }: ImageWithFallbackProps) {
     const [imageError, setImageError] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
@@ -29,26 +36,22 @@ export default function ImageWithFallback({
         setIsLoading(false);
     };
 
-    if (!src) {
+    // Fallback padrão otimizado para performance
+    if (!src || imageError) {
         return (
             <div className={`flex items-center justify-center bg-neutral-700 ${fallbackClassName || className}`}>
                 <div className="text-center flex flex-col items-center justify-center w-full h-full p-2">
-                    <img width="80" height="80" src={bull_logo} alt="Logo Versão Brasileira" className="mx-auto" />
+                    <img 
+                        width="80" 
+                        height="80" 
+                        src={bull_logo} 
+                        alt="Logo Versão Brasileira" 
+                        className="mx-auto"
+                        loading="lazy"
+                        decoding="async"
+                    />
                     <p className="text-sm md:text-base text-neutral-400 mt-2">
-                        {placeholder || 'Versão Brasileira'}
-                    </p>
-                </div>
-            </div>
-        );
-    }
-
-    if (imageError) {
-        return (
-            <div className={`flex items-center justify-center bg-neutral-700 ${fallbackClassName || className}`}>
-                <div className="text-center flex flex-col items-center justify-center w-full h-full p-2">
-                    <img width="80" height="80" src={bull_logo} alt="Logo Versão Brasileira" className="mx-auto" />
-                    <p className="text-sm md:text-base text-neutral-400 mt-2">
-                        {placeholder || 'Imagem indisponível'}
+                        {placeholder || (imageError ? 'Imagem indisponível' : 'Versão Brasileira')}
                     </p>
                 </div>
             </div>
@@ -71,6 +74,11 @@ export default function ImageWithFallback({
                 onError={handleImageError}
                 onLoad={handleImageLoad}
                 style={{ display: isLoading ? 'none' : 'block' }}
+                loading={loading}
+                decoding={decoding}
+                fetchPriority={fetchPriority}
+                // Otimizações adicionais para performance
+                crossOrigin="anonymous"
             />
         </div>
     );

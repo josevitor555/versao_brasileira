@@ -3,11 +3,12 @@ import { useState, useEffect } from 'react';
 // React icons
 import { ChevronLeft, ChevronRight, MessageCircle, Calendar } from 'lucide-react';
 
-// Framer motion
+// Framer Motion
 import { motion } from 'framer-motion';
 
 // Images
 import bull_logo from '/bull_5.png';
+import ImageWithFallback from './ImageWithFallback';
 
 const heroImages = [
   {
@@ -84,10 +85,13 @@ export default function HeroSection() {
       ${index === currentSlide ? 'opacity-100' : 'opacity-0'}
     `}
           >
-            <img
+            <ImageWithFallback
               src={image.url}
               alt={image.title}
               className="w-full h-full object-cover"
+              loading="eager"
+              decoding="async"
+              fetchPriority={index === 0 ? "high" : "auto"}
             />
             <div className="absolute inset-0 bg-linear-to-b from-black/70 via-black/50 to-black/80"></div>
           </div>
@@ -116,10 +120,13 @@ export default function HeroSection() {
           animate="show"
         >
           <motion.div className="flex justify-center mb-6" variants={item}>
-            <img
+            <ImageWithFallback
               src={bull_logo}
               alt="Versão Brasileira"
               className="w-40 h-40 object-contain relative z-20"
+              loading="eager"
+              decoding="async"
+              fetchPriority="high"
             />
           </motion.div>
 

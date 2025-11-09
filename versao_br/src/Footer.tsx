@@ -92,7 +92,13 @@ export default function Footer() {
                     >
                         <div className="flex items-center space-x-3 mb-6">
                             <div className="w-12 h-12 rounded-full flex items-center justify-center">
-                                <img src={logo_bull5} alt="Logo Versão Brasileira" className="w-full h-full object-contain" />
+                                <img 
+                                    src={logo_bull5} 
+                                    alt="Logo Versão Brasileira" 
+                                    className="w-full h-full object-contain"
+                                    loading="eager"
+                                    decoding="async"
+                                />
                             </div>
                             <h2 className="text-2xl font-heading font-semibold text-secondary">Versão Brasileira</h2>
                         </div>

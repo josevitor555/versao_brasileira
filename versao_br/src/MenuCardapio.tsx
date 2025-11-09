@@ -8,39 +8,10 @@ import { MessageCircle } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 // Images
-import bull_logo from '/bull_5.png';
+// import bull_logo from '/bull_5.png';
 
 // Componente ImageWithFallback
-const ImageWithFallback = ({
-    src,
-    alt,
-    className = ''
-}: {
-    src: string;
-    alt: string;
-    className?: string;
-}) => {
-    const [imageError, setImageError] = useState(false);
-    const [imageLoaded, setImageLoaded] = useState(false);
-
-    return imageError ? (
-        <div className={`flex items-center justify-center bg-neutral-700 ${className}`}>
-            <div className="text-center flex flex-col items-center justify-center w-full h-full p-2">
-                <img width="80" height="80" src={bull_logo} alt="Imagem não disponível" className="mx-auto" />
-                <p className="text-sm md:text-base text-neutral-400 mt-2"> Imagem indisponível </p>
-            </div>
-        </div>
-    ) : (
-        <img
-            src={src}
-            alt={alt}
-            className={className}
-            onError={() => setImageError(true)}
-            onLoad={() => setImageLoaded(true)}
-            style={{ display: imageLoaded ? 'block' : 'none' }}
-        />
-    );
-};
+import ImageWithFallback from './ImageWithFallback';
 
 interface MenuItem {
     id: number;
@@ -156,14 +127,14 @@ Por favor, confirmem a disponibilidade.`;
     return (
         <section id="cardapio" className="py-16 md:py-20 bg-[#181818]">
             <div className="container mx-auto px-4">
-                <motion.div 
+                <motion.div
                     className="text-center mb-12"
                     initial="hidden"
                     whileInView="show"
                     viewport={{ once: true, amount: 0.2 }}
                     variants={container}
                 >
-                    <motion.h2 
+                    <motion.h2
                         className="text-4xl md:text-5xl font-heading font-bold text-secondary mb-2"
                         variants={item}
                     >
@@ -189,7 +160,7 @@ Por favor, confirmem a disponibilidade.`;
                         </svg>
                     </motion.div>
 
-                    <motion.p 
+                    <motion.p
                         className="text-lg md:text-xl text-neutral-text-secondary max-w-2xl mx-auto mb-8 px-4"
                         variants={item}
                     >
@@ -197,7 +168,7 @@ Por favor, confirmem a disponibilidade.`;
                     </motion.p>
 
                     {categories.length > 0 && (
-                        <motion.div 
+                        <motion.div
                             className="flex flex-wrap justify-center gap-2 mb-4"
                             variants={item}
                         >
@@ -230,7 +201,7 @@ Por favor, confirmem a disponibilidade.`;
                     )}
                 </motion.div>
 
-                <motion.div 
+                <motion.div
                     className="flex flex-wrap justify-center gap-3 mb-12 md:mb-14"
                     initial="hidden"
                     whileInView="show"
@@ -292,48 +263,11 @@ Por favor, confirmem a disponibilidade.`;
                                     item.is_available &&
                                     (selectedCategory === null || item.category_id === selectedCategory)
                             )
-                            .map((item, _index, filteredItems) => {
-                                const sameCategoryItems = filteredItems.filter(i => i.category_id === item.category_id);
-                                const categoryIndex = sameCategoryItems.findIndex(i => i.id === item.id);
-
-                                const categoryImages: Record<number, string[]> = {
-                                    1: [ // Bebidas
-                                        'https://images.unsplash.com/photo-1606755962773-0c9b4a4d1b9d?auto=format&fit=crop&q=80&w=600&h=800',
-                                        'https://images.unsplash.com/photo-1592277705477-692b095b98ea?auto=format&fit=crop&q=80&w=600&h=800',
-                                        'https://images.unsplash.com/photo-1581254227460-3ff6b38c5a5a?auto=format&fit=crop&q=80&w=600&h=800',
-                                        'https://images.unsplash.com/photo-1592277705477-692b095b98ea?auto=format&fit=crop&q=80&w=600&h=800',
-                                    ],
-                                    2: [ // Saladas
-                                        'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&q=80&w=600&h=800',
-                                        'https://images.unsplash.com/photo-1551218808-94e220e084d2?auto=format&fit=crop&q=80&w=600&h=800',
-                                        'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&q=80&w=600&h=800',
-                                        'https://images.unsplash.com/photo-1551218808-94e220e084d2?auto=format&fit=crop&q=80&w=600&h=800',
-                                    ],
-                                    3: [ // Pratos Principais
-                                        'https://images.unsplash.com/photo-1601050690597-6c43d9b8c38c?auto=format&fit=crop&q=80&w=600&h=800',
-                                        'https://images.unsplash.com/photo-1551183053-bf91a1d81141?auto=format&fit=crop&q=80&w=600&h=800',
-                                        'https://images.unsplash.com/photo-1601050690597-6c43d9b8c38c?auto=format&fit=crop&q=80&w=600&h=800',
-                                        'https://images.unsplash.com/photo-1551183053-bf91a1d81141?auto=format&fit=crop&q=80&w=600&h=800',
-                                    ],
-                                    4: [ // Lanches
-                                        'https://images.unsplash.com/photo-1605475128023-439a15189b5b?auto=format&fit=crop&q=80&w=600&h=800',
-                                        'https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&q=80&w=600&h=800',
-                                        'https://images.unsplash.com/photo-1605475128023-439a15189b5b?auto=format&fit=crop&q=80&w=600&h=800',
-                                        'https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&q=80&w=600&h=800',
-                                    ],
-                                    5: [ // Sobremesas
-                                        'https://images.unsplash.com/photo-1551183053-bf91a1d81141?auto=format&fit=crop&q=80&w=600&h=800',
-                                        'https://images.unsplash.com/photo-1606755962773-0c9b4a4d1b9d?auto=format&fit=crop&q=80&w=600&h=800',
-                                        'https://images.unsplash.com/photo-1551183053-bf91a1d81141?auto=format&fit=crop&q=80&w=600&h=800',
-                                        'https://images.unsplash.com/photo-1606755962773-0c9b4a4d1b9d?auto=format&fit=crop&q=80&w=600&h=800',
-                                    ]
-                                };
-
-                                const imgUrl = item.image_url || categoryImages[item.category_id][categoryIndex % categoryImages[item.category_id].length];
+                            .map((item) => {
 
                                 return (
                                     <motion.div
-                                        key={`${item.id}-${selectedCategory}`}
+                                        key={item.id}
                                         className="flex flex-col items-start justify-start bg-transparent overflow-hidden transition-all duration-300 w-full hover:opacity-90"
                                         initial={{ opacity: 0, y: 20 }}
                                         animate={{ opacity: 1, y: 0 }}
@@ -344,9 +278,11 @@ Por favor, confirmem a disponibilidade.`;
                                         {/* Imagem vertical */}
                                         <div className="relative w-full aspect-3/4 bg-neutral-800 overflow-hidden">
                                             <ImageWithFallback
-                                                src={imgUrl}
-                                                alt={item.name}
-                                                className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+                                                src=""
+                                                alt="Versão Brasileira"
+                                                className="w-full h-full object-cover"
+                                                fallbackClassName="w-full h-full flex flex-col items-center justify-center bg-neutral-700 text-secondary p-4 text-center"
+                                                placeholder="Versão Brasileira"
                                             />
 
                                             <div className="absolute top-2 right-2 bg-secondary text-neutral-700 font-semibold px-2.5 py-1 rounded-full text-sm shadow-sm">

@@ -47,7 +47,13 @@ export default function Header() {
                 <div className="flex items-center justify-between py-3 flex-nowrap">
                     <motion.div className="flex items-center space-x-3 shrink-0" variants={fadeIn}>
                         <div className="w-10 h-10 rounded-full flex items-center justify-center shadow-sm">
-                            <img src={logo_bull5} alt="Logo Versão Brasileira" className="w-full h-full object-contain" />
+                            <img 
+                                src={logo_bull5} 
+                                alt="Logo Versão Brasileira" 
+                                className="w-full h-full object-contain"
+                                loading="eager"
+                                decoding="async"
+                            />
                         </div>
                         <h1 className="text-xl font-heading font-semibold text-secondary whitespace-nowrap"> Versão Brasileira </h1>
                     </motion.div>

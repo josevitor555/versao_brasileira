@@ -40,9 +40,9 @@ const galleryCategories = [
                 type: 'image' as 'image' | 'video'
             },
             {
-                url: '/video_1.mp4',
+                url: '/image_10.jpg',
                 alt: 'Vídeo do ambiente',
-                type: 'video' as 'image' | 'video'
+                type: 'image' as 'image' | 'video'
             }
         ]
     },
@@ -72,9 +72,9 @@ const galleryCategories = [
                 type: 'image' as 'image' | 'video'
             },
             {
-                url: '/video_2.mp4',
+                url: '/image_12.jpg',
                 alt: 'Vídeo do ambiente',
-                type: 'video' as 'image' | 'video'
+                type: 'image' as 'image' | 'video'
             }
         ]
     },
@@ -153,11 +153,11 @@ export default function GallerySection() {
                                     </div>
                                 ) : (
                                     <ImageWithFallback
-                                        src={item.url}
-                                        alt={item.alt}
-                                        className="h-auto max-w-full rounded-lg"
-                                        fallbackClassName="h-48 rounded-lg"
-                                        placeholder="Foto não disponível"
+                                        src=""
+                                        alt="Versão Brasileira"
+                                        className="w-full h-full object-cover"
+                                        fallbackClassName="w-full h-full flex flex-col items-center justify-center bg-neutral-700 text-secondary p-4 text-center"
+                                        placeholder="Versão Brasileira"
                                     />
                                 )}
                             </div>
@@ -268,11 +268,11 @@ export default function GallerySection() {
                                 </div>
                             ) : (
                                 <ImageWithFallback
-                                    src={selectedItem.url}
-                                    alt="Item ampliado"
-                                    className="max-w-full max-h-full rounded-lg object-contain"
-                                    fallbackClassName="w-64 h-48 rounded-lg"
-                                    placeholder="Item não pode ser exibido"
+                                    src=""
+                                    alt="Versão Brasileira"
+                                    className="w-full h-full object-cover"
+                                    fallbackClassName="w-full h-full flex flex-col items-center justify-center bg-neutral-700 text-secondary p-4 text-center"
+                                    placeholder="Versão Brasileira"
                                 />
                             )}
                         </div>
