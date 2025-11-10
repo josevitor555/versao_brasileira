@@ -131,16 +131,16 @@ export default function EventsSection() {
     }
 
     return (
-        <section id="eventos" className="py-20 bg-[#181818] relative z-10">
+        <section id="eventos" className="py-20 bg-[#181818]">
             <div className="container mx-auto px-4">
-                <motion.div 
+                <motion.div
                     className="text-center mb-12"
                     initial="hidden"
                     whileInView="show"
                     viewport={{ once: true, amount: 0.2 }}
                     variants={container}
                 >
-                    <motion.h2 
+                    <motion.h2
                         className="text-4xl md:text-5xl font-heading font-semibold text-secondary mb-3"
                         variants={item}
                     >
@@ -166,7 +166,7 @@ export default function EventsSection() {
                         </svg>
                     </motion.div>
 
-                    <motion.p 
+                    <motion.p
                         className="text-lg text-neutral-text-secondary max-w-2xl mx-auto"
                         variants={item}
                     >
@@ -177,37 +177,37 @@ export default function EventsSection() {
                 <div className="grid gap-8 max-w-4xl mx-auto">
                     {events.length > 0 ? (
                         events.map((event) => (
-                            <motion.div 
-                                key={event.id} 
-                                className="bg-neutral-bg shadow-sm overflow-hidden hover:shadow-md transition-shadow"
+                            <motion.div
+                                key={event.id}
+                                className="bg-neutral-bg shadow-sm overflow-hidden hover:shadow-md transition-shadow rounded-xl"
                                 variants={cardItem}
                                 initial="hidden"
                                 whileInView="show"
                                 viewport={{ once: true, amount: 0.1 }}
                                 whileHover={{ y: -5 }}
                             >
-                                <div className="md:flex">
+                                <div className="relative flex flex-col md:flex-row bg-[#1F1F1F] rounded-xl overflow-hidden border border-[#2A2A2A]">
                                     {event.image_url && (
-                                        <div className="md:w-1/3">
+                                        <div className="relative w-full md:w-[40%] aspect-16/10 md:aspect-auto overflow-hidden">
                                             <ImageWithFallback
                                                 src={event.image_url}
                                                 alt={event.title}
-                                                className="w-full h-40 md:h-56 object-cover"
-                                                fallbackClassName="w-full h-40 md:h-56"
-                                                placeholder="Foto do evento"
+                                                className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 hover:scale-110"
+                                                fallbackClassName="absolute inset-0 w-full h-full flex flex-col items-center justify-center bg-neutral-700 text-secondary p-4 text-center aspect-9/16"
+                                                placeholder="Versão Brasileira"
                                             />
-
+                                            <div className="absolute inset-0 bg-linear-to-t from-black/40 via-black/10 to-transparent z-10"></div>
                                         </div>
                                     )}
                                     <div className={`p-6 ${event.image_url ? 'md:w-2/3' : 'w-full'}`}>
-                                        <motion.h3 
+                                        <motion.h3
                                             className="text-2xl font-heading font-semibold text-secondary mb-3"
                                             variants={item}
                                         >
                                             {event.title}
                                         </motion.h3>
 
-                                        <motion.div 
+                                        <motion.div
                                             className="flex flex-wrap gap-4 mb-4 text-neutral-text-secondary"
                                             variants={item}
                                         >
@@ -230,7 +230,7 @@ export default function EventsSection() {
                                         </motion.div>
 
                                         {event.description && (
-                                            <motion.p 
+                                            <motion.p
                                                 className="text-neutral-text-secondary mb-6 leading-relaxed"
                                                 variants={item}
                                             >
@@ -253,7 +253,7 @@ export default function EventsSection() {
                             </motion.div>
                         ))
                     ) : (
-                        <motion.div 
+                        <motion.div
                             className="text-center text-neutral-text-secondary py-12 bg-neutral-bg rounded-lg border border-neutral-border"
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}

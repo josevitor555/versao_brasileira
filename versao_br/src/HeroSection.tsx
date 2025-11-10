@@ -8,7 +8,6 @@ import { motion } from 'framer-motion';
 
 // Images
 import bull_logo from '/bull_5.png';
-import ImageWithFallback from './ImageWithFallback';
 
 const heroImages = [
   {
@@ -52,7 +51,7 @@ export default function HeroSection() {
   };
 
   const openWhatsApp = () => {
-    const phoneNumber = '558695483983';
+    const phoneNumber = '9999999999999';
     const message = 'Olá! Gostaria de fazer uma reserva na Versão Brasileira.';
     const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
     window.open(url, '_blank');
@@ -75,8 +74,7 @@ export default function HeroSection() {
   };
 
   return (
-    <section id="home" className="relative h-screen overflow-hidden">
-
+    <section id="home" className="relative min-h-screen overflow-hidden pt-32">
       <div className="absolute inset-0">
         {heroImages.map((image, index) => (
           <div
@@ -85,7 +83,7 @@ export default function HeroSection() {
       ${index === currentSlide ? 'opacity-100' : 'opacity-0'}
     `}
           >
-            <ImageWithFallback
+            <img
               src={image.url}
               alt={image.title}
               className="w-full h-full object-cover"
@@ -96,7 +94,6 @@ export default function HeroSection() {
             <div className="absolute inset-0 bg-linear-to-b from-black/70 via-black/50 to-black/80"></div>
           </div>
         ))}
-
       </div>
 
       <button
@@ -112,15 +109,15 @@ export default function HeroSection() {
         <ChevronRight className="w-6 h-6" />
       </button>
 
-      <div className="relative z-10 flex items-center justify-center h-full text-center text-primary px-4">
+      <div className="relative z-10 flex items-center justify-center h-full text-center text-primary px-4 pt-16">
         <motion.div
-          className="max-w-4xl"
+          className="max-w-4xl pb-16 sm:pb-20 md:pb-24"
           variants={container}
           initial="hidden"
           animate="show"
         >
           <motion.div className="flex justify-center mb-6" variants={item}>
-            <ImageWithFallback
+            <img
               src={bull_logo}
               alt="Versão Brasileira"
               className="w-40 h-40 object-contain relative z-20"

@@ -38,7 +38,7 @@ export default function Header() {
 
     return (
         <motion.header 
-            className="bg-transparent text-primary shadow-none p-1 fixed top-0 left-0 right-0 z-9999 border border-primary backdrop-blur-sm mx-4 mt-4 rounded-lg"
+            className="bg-transparent text-primary shadow-none p-1 fixed top-0 left-0 right-0 z-50 border border-primary backdrop-blur-sm mx-4 mt-4 rounded-lg"
             initial="hidden"
             animate="visible"
             variants={staggerChildren}

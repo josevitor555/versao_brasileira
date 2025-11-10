@@ -8,7 +8,7 @@ import { ChevronRight, Star } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 // Image with fallback
-import ImageWithFallback from './ImageWithFallback';
+import ImageWithFallback from './ImageWithFallback'
 
 interface Testimonial {
     id: number;

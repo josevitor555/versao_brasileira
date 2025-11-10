@@ -63,14 +63,14 @@ export default function Footer() {
     };
 
     const orderWhatsApp = (itemName: string) => {
-        const phoneNumber = '5586995483983';
+        const phoneNumber = '9999999999999';
         const message = `Olá! Gostaria de pedir: ${itemName}`;
         const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
         window.open(url, '_blank');
     };
 
     const reserveWhatsApp = (eventTitle: string) => {
-        const phoneNumber = '5586995483983';
+        const phoneNumber = '9999999999999';
         const message = `Olá! Gostaria de reservar para o evento: ${eventTitle}`;
         const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
         window.open(url, '_blank');

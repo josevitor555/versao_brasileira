@@ -39,7 +39,7 @@ export default function ImageWithFallback({
     // Fallback padrão otimizado para performance
     if (!src || imageError) {
         return (
-            <div className={`flex items-center justify-center bg-neutral-700 ${fallbackClassName || className}`}>
+            <div className={`flex items-center justify-center bg-neutral-700 w-full h-full ${fallbackClassName || className}`}>
                 <div className="text-center flex flex-col items-center justify-center w-full h-full p-2">
                     <img 
                         width="80" 
@@ -59,10 +59,10 @@ export default function ImageWithFallback({
     }
 
     return (
-        <div className="relative">
+        <div className="relative z-0 w-full h-full">
             {isLoading && (
-                <div className={`absolute inset-0 flex items-center justify-center bg-neutral-700 animate-pulse ${className}`}>
-                    <div className="text-neutral-text-secondary">
+                <div className={`absolute inset-0 flex items-center justify-center bg-neutral-700 animate-pulse w-full h-full ${className}`}>
+                    <div className="text-neutral-text-secondary flex items-center justify-center w-full h-full">
                         <ImageIcon className="w-6 h-6 opacity-50" />
                     </div>
                 </div>

@@ -104,7 +104,7 @@ export default function MenuSection() {
     }, []);
 
     const orderWhatsApp = (itemName: string, price: number) => {
-        const phoneNumber = '5586995483983';
+        const phoneNumber = '9999999999999';
         const message = `Olá! Gostaria de fazer um pedido:
 
 ${itemName} - R$ ${price.toFixed(2)}

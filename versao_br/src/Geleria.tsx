@@ -169,7 +169,7 @@ export default function GallerySection() {
     };
 
     return (
-        <section id="galeria" className="py-20 bg-[#181818] relative z-10">
+        <section id="galeria" className="py-20 bg-[#181818] relative">
             <div className="container mx-auto px-4">
                 <motion.div
                     className="text-center mb-12"
