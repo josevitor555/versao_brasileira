@@ -8,7 +8,7 @@ export default function ContactSection() {
     }, []);
 
     const openWhatsApp = () => {
-        const phoneNumber = '5586995483983';
+        const phoneNumber = '9999999999999';
         const message = 'Olá! Gostaria de mais informações sobre a Versão Brasileira.';
         const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
         window.open(url, '_blank');
@@ -51,7 +51,7 @@ export default function ContactSection() {
         {
             icon: <Facebook className="w-5 h-5" />,
             name: 'Facebook',
-            url: 'https://facebook.com/versaobrasileira',
+            // url: 'https://facebook.com/versaobrasileira',
             // color: 'hover:text-blue-600'
         }
     ];

@@ -114,7 +114,7 @@ export default function Footer() {
                                 whileTap={{ scale: 0.9 }}
                                 className="bg-secondary text-black p-3 rounded-full"
                                 onClick={() => {
-                                    const phoneNumber = '5586995483983';
+                                    const phoneNumber = '9999999999999';
                                     const message = 'Olá! Gostaria de mais informações sobre o Versão Brasileira.';
                                     const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
                                     window.open(url, '_blank');

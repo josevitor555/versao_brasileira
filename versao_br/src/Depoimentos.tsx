@@ -180,7 +180,7 @@ export default function TestimonialsSection() {
                                     viewport={{ once: true, amount: 0.1 }}
                                     transition={{ duration: 0.5, delay: index * 0.1 }}
                                 >
-                                    <div className="bg-transparent rounded-3xl shadow-lg hover:shadow-xl transition-all duration-500 p-8 md:p-12 max-w-4xl mx-auto transform hover:-translate-y-1">
+                                    <div className="bg-transparent rounded-3xl transition-all duration-500 p-8 md:p-12 max-w-4xl mx-auto transform hover:-translate-y-1">
                                         <div className="text-center">
                                             <motion.div 
                                                 className="mb-14"

@@ -114,7 +114,7 @@ export default function EventsSection() {
     };
 
     const reserveWhatsApp = (event: Event) => {
-        const phoneNumber = '5586995483983';
+        const phoneNumber = '9999999999999';
         const message = event.whatsapp_message || `Gostaria de fazer uma reserva para o evento: ${event.title}`;
         const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
         window.open(url, '_blank');
